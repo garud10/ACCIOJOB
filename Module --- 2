@@ -1,0 +1,1998 @@
+//------------------Sum of Natural Numbers-------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static void sum(int n){
+                int sum=0;
+                for(int i=1; i<=n; i++){
+                        sum=sum+i;
+                }
+                System.out.println(sum);
+                return;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		//your code here
+    Scanner sc= new Scanner(System.in);
+    int sum=0;
+    int n=sc.nextInt();
+        sum(n);
+    //System.out.println(sum);
+	}
+}
+
+//-----------------Factorial of a Number------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static void fact(long n){
+                long f=1;
+                for(int i=1; i<=n; i++){
+                        f=f*i;
+                }
+                System.out.println(f);
+                return;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                long n=sc.nextLong();
+                fact(n);
+
+        }
+}
+
+//-------------------Nth Even Fibonacci Number-------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static void fan(int a,int b, int count,int n){
+               // System.out.println(a+" "+b);
+                if(count==n){
+                        System.out.println(a);
+                        return;
+                }
+                int c=a+b;
+                if(b%2==0){
+                        fan(b,c,count+1,n);
+                                }
+                else{
+                
+                fan(b,c,count,n);
+                }
+                
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+              
+               fan(0,1,0,n);
+	}
+}
+
+//----------------------BunnyEars-----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int count(int n){
+                if(n==0){
+                        return 0;
+                }
+
+                int sans=count(n-1);
+                int Ans=2+sans;
+
+                return Ans;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                 System.out.println(count(n));
+	}
+}
+
+//---------------------Factorial Recursively----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static long fact(int n){
+                if(n==0){
+                        return 1;
+                }
+
+                long anss=fact(n-1);
+                long Ans=n*anss;
+
+                return Ans;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                System.out.println(fact(n));
+	}
+}
+
+//-----------------BunnyEars2----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int count(int n){
+                int Ans=0;
+        if(n==0){
+        return 0;
+        }
+
+       if(n%2==0){
+               int sans=count(n-1);
+               Ans=3+sans;
+       }
+     else{
+             int sans=count(n-1);
+             Ans=2+sans;
+     }
+
+   return Ans;
+}
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                System.out.println(count(n));
+	}
+}
+
+//-------------------GCD Using Recursion----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static long gcd( long a, long b){
+               
+                if (b != 0)
+            return gcd(b, a % b);
+        else
+            return a;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                long a=sc.nextInt();
+                long b=sc.nextInt();
+               System.out.println(gcd(a,b));
+                }
+}
+
+//---------------------Reverse Array Recursively------------------//
+
+import java.util.*;
+public class Main
+{
+    public static void rec(int a[],int n){
+        if(n<0){
+            return;
+        }
+        
+        System.out.print(a[n]+" ");
+        rec(a,n-1);
+    }
+    
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	int n=sc.nextInt();
+	int a[]=new int[n];
+	for(int i=0; i<n; i++)
+	{
+	    a[i]=sc.nextInt();
+	}
+	
+	rec(a,n-1);
+	}
+}
+
+
+//-------------------Sum of Array elements using recursion--------------//
+
+import java.util.*;
+class Solution{
+	public static int sumOfArray(int arr[], int n){
+		if(n == 0){
+			return arr[n];
+		}
+		int ans = sumOfArray(arr,n-1);
+		int res = ans + arr[n];
+
+		return res;
+	}
+	public static int sumofArrayRec(int[] arr, int n) {
+        // Your code here
+	
+		int sum = sumOfArray(arr,n-1);
+		return sum;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+        System.out.println(Solution.sumofArrayRec(arr, n));
+    }
+}
+
+//-----------------Sum of natural numbers------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int sumof(int n){
+                if(n==1){
+                        return 1;
+                }
+
+                int sans=sumof(n-1);
+                int ans=sans+n;
+        
+        return ans;
+        }
+        
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+
+                System.out.println(sumof(n));
+                
+	}
+}
+
+//---------------Count X in a string-----------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static void  rec(int index,String s,int count){
+                if(index==s.length()){
+                        System.out.println(count);
+                        return;
+                }
+                if(s.charAt(index)=='x'){
+                        count++;
+                }
+
+                rec(index+1,s,count);
+                
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String s=sc.next();
+                rec(0,s,0);
+	}
+}
+
+//----------------Palindrome String-------------//
+
+import java.io.*;
+import java.util.*;
+
+class Solution {
+	public static int pel(String s){
+		
+		int n = s.length();
+		
+		int i = 0;
+		int j = n - 1;
+		
+		while(i < j){
+			if(s.charAt(i) != s.charAt(j)){
+				return 0;
+			}
+			i++;
+			j--;
+		}
+
+		return 1;
+	}
+       static int isPalindrome(String str)
+      {
+           // Your code here
+		  int n = str.length();
+		  if(n == 1){
+			  return 1;
+		  }
+		  str = str.toLowerCase();
+          StringBuilder res = new StringBuilder();
+		  for(int i = 0; i < n; i++){
+			  if((str.charAt(i) >= '0' && str.charAt(i) <= '9') || (str.charAt(i) >= 'a' && str.charAt(i) <= 'z')){
+				  res.append(str.charAt(i));
+			  }
+		  }
+
+		  int ans = pel(res.toString());
+
+		  return ans;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str=sc.nextLine();
+        Solution Obj = new Solution();
+        int result = Obj.isPalindrome(str);
+        System.out.println(result);        
+    }
+}
+
+//------------------Recursive Digit Sum----------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int rec(int p){
+                int sumOfDigit=0;
+                if(p<10){
+                        return p ;
+                }
+                  while(p>0){
+                          int digit=p%10;
+                          sumOfDigit +=digit;
+                          p=p/10;
+                  }
+                
+             
+        return rec(sumOfDigit);
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String n=sc.next();
+                int k=sc.nextInt();
+                int sd=0;
+             for(int i=0; i<n.length(); i++){
+                        sd=sd+n.charAt(i)-'0';
+             }
+                int sup=sd*k;
+                                       
+               int p=rec(sup );
+        System.out.println(p);
+	}
+}
+
+//------------------Sum of Digits---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int sum(int n){
+                if(n==0){
+                        return 0;
+                }
+                int sans=sum(n/10);
+                int ans=(n%10)+sans;
+
+
+                return ans;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+            Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                System.out.println(sum(n));
+
+
+
+
+                // 1+8+7+3
+
+                //int ans=sum(n/10);
+                //int aans=n%10+ans;
+	}
+}
+
+//-------------------Array11-------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int rec(int index,int a[]){
+                if(index==a.length){
+                        return 0;
+                }
+                if(a[index]==11){
+                        return (1+rec(index+1,a));
+                }
+                else{
+                        return (rec(index+1,a));
+                }
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int a[]=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                System.out.println(rec(0,a));
+	}
+}
+
+//------------------No X---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static String print(String s,int i){
+            String main="";
+                if(i==s.length()){
+                        return "";
+                }
+
+                if(s.charAt(i)!='x'){
+                      //  char c=s.charAt(i);
+                  main=s.charAt(i)+print(s,i+1);
+                     //   System.out.println(main);
+                }
+                else{
+                       main=print(s,i+1);
+                }
+
+                return main;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String s=sc.next();
+              System.out.println(print(s,0));
+	}
+}
+
+//--------------PairStar------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static String star(String s, int i){
+                String main="";
+              if(i+1==s.length()){
+                      return s.substring(i);
+              }
+                if(s.charAt(i)==s.charAt(i+1)){
+                        main=s.charAt(i)+"*"+star(s,i+1);
+                }
+                else{
+                        main=s.charAt(i)+star(s,i+1);
+                }
+
+                return main;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String s=sc.next();
+
+                System.out.println(star(s,0));
+	}
+}
+
+/----------------Countabc------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int rec(int index,String s){
+                if(index+3>s.length()){
+                        return 0;
+                }
+                
+                if(s.substring(index,index+3).compareTo("abc")==0 || s.substring(index,index+3).compareTo("aba")==0 ){
+                   return(1+rec(index+1,s));
+                }
+                else{
+                        return rec(index+1,s);
+                }
+                
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String s=sc.next();
+                System.out.println(rec(0,s));
+                
+	}
+}
+
+//---------------Delete the Middle of the Linked List-----------------//
+
+import java.util.*;
+import java.io.*;
+
+class Node{
+    int data;
+    Node next;
+    
+    Node(int x){
+        data = x;
+        next = null;
+    }
+    
+}
+class Main{
+	static void printList(Node node) 
+	{ 
+		while (node != null) 
+		{ 
+			System.out.print(node.data + " "); 
+			node = node.next; 
+		} 
+		System.out.println(); 
+	}
+    public static void main(String args[]) throws IOException { 
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        while(t > 0){
+        	int n = sc.nextInt();
+            Node head = new Node(sc.nextInt());
+            Node tail = head;
+            for(int i=0; i<n-1; i++)
+            {
+                tail.next = new Node(sc.nextInt());
+                tail = tail.next;
+            }
+            Solution g = new Solution();
+            head = g.deleteMid(head);
+            printList(head); 
+            t--;
+        }
+		sc.close();
+    } 
+} 
+   
+class Solution{
+    Node deleteMid(Node head){
+		//Write code here
+		if(head.next == null){
+			return head;
+		}
+		if(head.next.next == null){
+			head.next = null;
+			return head;
+		}
+		Node slow = head;
+		Node fast = head;
+
+		while(fast != null && fast.next != null){
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+
+		slow.data = slow.next.data;
+		slow.next = slow.next.next;
+
+		return head;
+    }
+}
+
+//----------------Delete a Node-------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+class Node{
+    int data;
+    Node next;
+    public Node(int d){
+        this.data=d;
+    }
+}
+public class Main
+{
+    static Node head;
+     static Node tail;
+    public static void addLast(int d){
+        Node nn=new Node(d);
+        if(head==null){
+            head=nn;
+            tail=nn;
+        }
+        else{
+            tail.next=nn;
+            
+            tail=nn;
+        }
+        
+    }
+    public static void delete(int idx){
+        if(idx<0){
+            return;
+        }
+        else if(idx==0){
+            head=head.next;
+            return;
+        }
+        else{
+            Node cur=head;
+            for(int i=0; i<idx-1; i++){
+                cur=cur.next;
+            }
+            cur.next=cur.next.next;
+        }
+        return;
+    }
+    public static void display(){
+        Node cur=head;
+        while(cur!=null){
+            System.out.print(cur.data+" ");
+            
+            cur=cur.next;
+        }
+        System.out.println();
+    }
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+      Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        for(int i=0; i<n; i++){
+            addLast(sc.nextInt());
+        }
+        int idx=sc.nextInt();
+        delete(idx);
+        display();
+        
+       
+	}
+}
+
+//------------------Add 1 to a number represented as linked list----------------//
+
+import java.util.*;
+import java.io.*;
+
+class Node{
+	int data;
+	Node next;
+
+	public Node(int d){
+		this.data = d;
+	}
+}
+class Solution{
+	static Node head;
+	static Node tail;
+	
+	public static Node reverse(Node head){
+		Node prev = null;
+		Node cur = head;
+
+		while(cur!=null){
+			Node nextOfCur = cur.next;
+
+			cur.next = prev;
+			prev = cur;
+			cur = nextOfCur;
+		}
+
+		return prev;
+	}
+	public static void display(Node head){
+		Node cur = head;
+
+		while(cur != null){
+			System.out.print(cur.data+" ");
+
+			cur = cur.next;
+			
+		}
+	}
+        public static void add1(int x){
+
+			 x = x + 1;
+			while(x > 0){
+				Node nn = new Node(x%10);
+                if(head == null){
+					head = nn;
+					tail = nn;
+				}
+				else{
+					tail.next = nn;
+					tail = nn;
+				}
+				x = x/10;
+			}
+			head = reverse(head);
+             display(head);
+        }
+}
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+         int x = sc.nextInt();
+            Solution ob = new Solution();
+            ob.add1(x);
+    }
+}
+
+//-----------------Compare Two Linked lists-------------//
+
+import java.io.*;
+import java.util.*;
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data = data;
+        next = null;
+    }
+}
+class LinkedList{
+    Node head;
+    void add(int data ){
+        Node new_node = new Node(data);
+        if(head == null){
+            head = new_node;
+            return;
+        }
+        Node current = head;
+        while(current.next !=null){
+            current = current.next;
+        }
+        current.next = new_node;
+    }
+}    
+public class Main {
+
+
+    public static void main(String args[]) {
+        //Write code here
+		Scanner sc=new Scanner(System.in);
+		int n1=sc.nextInt();
+		int n2=sc.nextInt();
+		int max=Math.max(n1,n2);
+    LinkedList l1=new LinkedList();
+		LinkedList l2=new LinkedList();
+		
+		for(int i=0; i<n1; i++){
+			l1.add(sc.nextInt());
+		}
+		
+		
+		for(int i=0; i<n2; i++){
+			l2.add(sc.nextInt());
+		}
+
+		Node head1=l1.head;
+		Node head2=l2.head;
+        int flag=1;
+		for(int i=0; i<max; i++){
+			if(head1!=null && head2!=null){
+			if(head1.data!=head2.data){
+				flag=0;
+				break;
+			}
+			}
+			else{
+				flag=0;
+				break;
+			}
+			head1=head1.next;
+			head2=head2.next;
+		}
+
+		System.out.println(flag);
+		
+		
+		
+    }
+}
+
+//-----------------Merge two sorted linked list--------------//
+
+import java.io.*;
+import java.util.*;
+ 
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data = data;
+        next = null;
+    }
+}
+class LinkedList{
+    Node head;
+    void add(int data ){
+        Node new_node = new Node(data);
+        if(head == null){
+            head = new_node;
+            return;
+        }
+        Node current = head;
+        while(current.next !=null){
+            current = current.next;
+        }
+        current.next = new_node;
+    }
+}
+
+class Solution {
+ static Node merge(Node x, Node y){
+       // Write your code here
+     Node head1=null;
+     Node res=x;
+    while(x!=null && y!=null){
+        if(x.data<y.data){
+            if(head1==null){
+                head1=x;
+                res=head1;
+                x=x.next;
+            }
+            else{
+               res.next=x;
+                res=res.next;
+                x=x.next;
+            }
+        }
+        else{
+            if(head1==null){
+                head1=y;
+                res=head1;
+                y=y.next;
+            }
+            else{
+               res.next=y;
+                res=res.next;
+                y=y.next;
+            }
+        }
+    }
+     while(x!=null){
+          res.next=x;
+         res=res.next;
+          x=x.next;
+     }
+     while(y!=null){
+          res.next=y;
+         res=res.next;
+          y=y.next;
+     }
+     return head1;
+    }
+}
+
+public class Main {
+    
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        LinkedList l1= new LinkedList();
+        for(int i=0;i<n;i++){
+            l1.add(sc.nextInt());
+        }
+        int m = sc.nextInt();
+        LinkedList l2 = new LinkedList();
+        for(int i=0;i<m;i++){
+            l2.add(sc.nextInt());
+        }
+
+        Solution Ob = new Solution();
+        Node head = Ob.merge(l1.head, l2.head);
+        while(head != null){
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+    }
+}
+
+//-------------Reverse Alternate Nodes of a Singly Linked List--------------//
+
+import java.util.*;
+
+class Solution{
+public static LinkedListNode  reverse(LinkedListNode head){
+      LinkedListNode cur= head;
+      LinkedListNode prev= null;
+
+	while(cur!=null){
+      LinkedListNode nextOfCur= cur.next;
+
+		cur.next=prev;
+		prev=cur;
+
+		cur=nextOfCur;
+	}
+
+	head=prev;
+
+	return head;
+}
+
+    static LinkedListNode<Integer> reverseAlternateNodes(LinkedListNode<Integer> head){
+        //Write your code here
+		LinkedListNode dummy1=new LinkedListNode(-1);
+		LinkedListNode dummy2=new LinkedListNode(-1);
+		
+      LinkedListNode p1= dummy1;
+      LinkedListNode p2= dummy2;
+      LinkedListNode cur= head;
+         int count=0;
+		while(cur!=null){
+
+			if(count%2==0){
+			p1.next=cur;
+			p1=p1.next;
+			cur=cur.next;
+				p1.next=null;
+			}
+		else{
+			p2.next=cur;
+			p2=p2.next;;
+			cur=cur.next;
+			p2.next=null;
+		}
+			count++;
+		}
+
+		LinkedListNode head1=dummy1.next;
+		LinkedListNode head2=dummy2.next;
+
+		head2=reverse(head2);
+
+		p1.next=head2;
+		
+		return head1;
+    }
+}
+
+class LinkedListNode<T>  {
+    T data;
+    LinkedListNode<T> next;
+
+    public LinkedListNode(T data)  {
+        this.data = data;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Throwable {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        LinkedListNode<Integer> head = new LinkedListNode<Integer>(sc.nextInt());
+        LinkedListNode<Integer> a = head;
+        for(int i=1;i<n;i++) {
+            LinkedListNode<Integer> temp = new LinkedListNode<Integer>(sc.nextInt());
+            a.next = temp;
+            a = temp;
+        }
+        LinkedListNode<Integer> ans = Solution.reverseAlternateNodes(head);
+        for(int i=0;i<n;i++) {
+            if(i == n-1) {
+                System.out.println(ans.data);
+            }
+            else {
+                System.out.print(ans.data + " ");
+            }
+            ans = ans.next;
+        }
+    }
+}
+
+
+//--------------------Swap Kth Nodes from End-----------------//
+
+
+import java.util.*;
+import java.io.*;
+class Node{
+	int data;
+	Node next;
+	public Node(int d){
+		this.data = d;
+	}
+}
+public class Main {
+	static Node head;
+	static Node tail;
+	
+	public static void addLast(int x){
+		Node nn = new Node(x);
+		if(head == null){
+			head = nn;
+			tail = nn;
+		}
+		else{
+			tail.next = nn;
+			tail = nn;
+		}
+	}
+	public static Node swap(int k, int n){
+		if(n == 1 || k == n-k+1){
+			return head;
+		}
+		int l = n-k+1;
+		Node dummy = new Node(-1);
+		dummy.next = head;
+		Node prev1 = dummy;
+		Node prev2 = dummy;
+		Node left = head;
+		Node right = head;
+
+		while(k > 1){
+			prev1 = prev1.next;;
+			left = left.next;
+			k--;
+		}
+		while(l > 1){
+			prev2 = prev2.next;
+			right = right.next;
+			l--;
+		}
+         Node leftn = left.next;
+		if(prev2 == left){
+			prev1.next = right;
+			left.next = right.next;
+			right.next = left;
+		}
+		if(prev1 == right){
+			prev2.next = left;
+			left.next = right;
+			right.next = leftn;
+		}
+		else{
+			prev1.next = right;
+			prev2.next = left;
+			left.next = right.next;
+			right.next = leftn;
+		}
+		return dummy.next;
+	}
+    public static void main(String args[]) {
+        //Writek your code here
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int k=sc.nextInt();
+		for(int i=0; i<n; i++){
+			addLast(sc.nextInt());
+		}
+		Node ans = swap(k,n);
+		while(ans != null){
+			System.out.print(ans.data+" ");
+			ans = ans.next;
+		}
+    }
+}
+
+//------------------Print in Reverse--------------//
+
+import java.util.*;
+import java.io.*;
+
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data = data;
+        next = null;
+    }
+}
+class LinkedList{
+    Node head;
+    void add(int data){
+        Node new_node = new Node(data);
+        if(head == null){
+            head = new_node;
+            return;
+        }
+        Node curr = head;
+        while(curr.next != null)
+            curr = curr.next;
+        curr.next = new_node;
+    }
+}
+public class Main {
+	
+    public static void reverse(Node head){
+        // write code here
+         Node pre=null;
+		Node cur=head;
+
+		while(cur!=null){
+			Node nextOfCur=cur.next;
+
+			cur.next=pre;
+
+			pre=cur;
+			cur=nextOfCur;
+		}
+  
+
+		while(pre!=null){
+			System.out.print(pre.data+" ");
+			pre=pre.next;
+		}
+		
+
+		
+    }
+    public static void main(String args[]){
+        Scanner input = new Scanner(System.in);
+        LinkedList list = new LinkedList();
+        int n = input.nextInt();
+        for(int i = 0; i < n; i++){
+            int x = input.nextInt();
+            list.add(x);
+        }
+        reverse(list.head);
+        System.out.println("");
+    }
+}
+
+//--------------------Insert node in a doubly linked list-----------------//
+
+import java.util.*;
+import java.io.*;
+
+class Node{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data){
+        this.data = data;
+        next = null;
+        prev = null;
+    }
+}
+class LinkedList{
+    Node head;
+    void add(int data ){
+        Node new_node = new Node(data);
+        if(head == null){
+            head = new_node;
+            return;
+        }
+        Node current = head;
+        while(current.next !=null){
+            current = current.next;
+        }
+        current.next = new_node;
+    }
+}
+
+class Solution {
+    static Node insertAtHead(Node head,int K) {
+        // Write your code here.
+		Node nn = new Node(K);
+		nn.next = head;
+		nn.prev = null;
+
+		head = nn;
+
+		return head;
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int K = sc.nextInt();
+        LinkedList list = new LinkedList();
+        for (int i = 0; i < N; i++) {
+            list.add(sc.nextInt());
+        }
+        Node head = Solution.insertAtHead(list.head,K);
+        while (head != null) {
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+    }
+}
+
+//-----------------Insertion in circular linked list--------------//
+
+
+import java.util.*;
+import java.io.*;
+class Node{
+    int data;
+    Node next;
+    
+    Node(int x){
+        data = x;
+        
+    }
+    
+}
+
+public class Main {
+	static Node head;
+   static Node tail;
+	public static void addLast(int d){
+	Node nn=new Node(d);
+     if(head==null){
+		 head=nn;
+		 tail=nn;
+	 }
+    else{
+	 tail.next=nn;
+		 tail=nn;
+     }
+}
+    public static void main(String args[]) {
+        //your code here
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		for(int i=0; i<n; i++){
+			addLast(sc.nextInt());
+		}
+		int k=sc.nextInt();
+		//System.out.println(k);
+		
+		tail.next=head;
+
+		Node p1=head;
+		Node p2=head;
+		while(p1!=p2.next){
+			p2=p2.next;
+		}
+		//System.out.println(p2);
+Node nn=new Node(k);
+		nn.next=p2.next;
+		p2.next=nn;
+		//System.out.println(nn.data);
+   
+		p1=head;
+		p2=head;
+		//System.out.println(p2.data);
+		
+       do{
+		   System.out.print(p2.data+" ");
+			p2=p2.next;
+	   }while(p1!=p2);
+			
+		
+    }
+}
+
+//--------------------Add two numbers represented by linked lists------------//
+
+
+import java.util.*;
+import java.io.*;
+public class Main {
+    
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        int m = input.nextInt();
+        LinkedList a = new LinkedList();
+        LinkedList b = new LinkedList();
+        for(int i = 0; i < n; i++){
+            a.add(input.nextInt());
+        }
+        for(int i = 0; i < m; i++){
+            b.add(input.nextInt());
+        }
+        LinkedList ans = new LinkedList();
+        Solution A = new Solution();
+        ans.head = A.addTwoLinkedLists(a.head, b.head);
+        ans.printList();
+
+    }
+}
+
+
+class Node{
+    int data;
+    Node next;
+    Node(int data){
+        this.data = data;
+        next = null;
+    }
+}
+class LinkedList{
+    Node head;
+    void add(int data){
+        Node new_node = new Node(data);
+        if(head == null){
+            head = new_node;
+            return;
+        }
+        Node curr = head;
+        while(curr.next != null)
+            curr = curr.next;
+        curr.next = new_node;
+    }
+    void printList()
+    {
+        Node temp = head;
+        while (temp != null)
+        {
+           System.out.print(temp.data+" ");
+           temp = temp.next;
+        }  
+        System.out.println();
+    }
+}
+
+
+class Solution
+{
+      public static Node reverse(Node head){
+		  Node prev=null;
+		  Node cur=head;
+
+		  while(cur!=null){
+			  Node nextOfCur=cur.next;
+
+			  cur.next=prev;
+			  prev=cur;
+			  cur=nextOfCur;
+		  }
+
+		  return prev;
+	  }
+	public static Node add(Node head1, Node head2){
+           Node p1=head1;
+		   Node p2=head2;
+		   int carry=0;
+		   Node dummy=new Node(-1);
+		   Node cur=dummy;
+
+		while(p1!=null || p2!=null || carry>0){
+			int val1=(p1!=null)? p1.data:0;
+			int val2=(p2!=null)? p2.data:0;
+
+			int total=val1+val2+carry;
+			Node nn= new Node(total%10);
+			carry=total/10;
+
+			cur.next=nn;
+			cur=cur.next;
+
+			p1=(p1!=null)? p1.next:p1;
+			p2=(p2!=null)? p2.next:p2;
+			
+		}
+
+		return dummy.next;
+	}
+    public static Node addTwoLinkedLists(Node head1, Node head2)
+    {
+        //Write your code here
+		head1=reverse(head1);
+		head2=reverse(head2);
+
+		
+		Node head=add(head1,head2);
+		head=reverse(head);
+        
+    return head;
+	}
+    
+}
+
+//---------------------Swap Kth Nodes from End---------------//
+
+
+import java.util.*;
+import java.io.*;
+class Node{
+	int data;
+	Node next;
+	public Node(int d){
+		this.data = d;
+	}
+}
+public class Main {
+	static Node head;
+	static Node tail;
+	
+	public static void addLast(int x){
+		Node nn = new Node(x);
+		if(head == null){
+			head = nn;
+			tail = nn;
+		}
+		else{
+			tail.next = nn;
+			tail = nn;
+		}
+	}
+	public static Node swap(int k, int n){
+		if(n == 1 || k == n-k+1){
+			return head;
+		}
+		int l = n-k+1;
+		Node dummy = new Node(-1);
+		dummy.next = head;
+		Node prev1 = dummy;
+		Node prev2 = dummy;
+		Node left = head;
+		Node right = head;
+
+		while(k > 1){
+			prev1 = prev1.next;;
+			left = left.next;
+			k--;
+		}
+		while(l > 1){
+			prev2 = prev2.next;
+			right = right.next;
+			l--;
+		}
+         Node leftn = left.next;
+		if(prev2 == left){
+			prev1.next = right;
+			left.next = right.next;
+			right.next = left;
+		}
+		if(prev1 == right){
+			prev2.next = left;
+			left.next = right;
+			right.next = leftn;
+		}
+		else{
+			prev1.next = right;
+			prev2.next = left;
+			left.next = right.next;
+			right.next = leftn;
+		}
+		return dummy.next;
+	}
+    public static void main(String args[]) {
+        //Writek your code here
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		int k=sc.nextInt();
+		for(int i=0; i<n; i++){
+			addLast(sc.nextInt());
+		}
+		Node ans = swap(k,n);
+		while(ans != null){
+			System.out.print(ans.data+" ");
+			ans = ans.next;
+		}
+    }
+}
+
+//-------------------Insert node in a doubly linked list--------------//
+
+import java.util.*;
+import java.io.*;
+
+class Node{
+    int data;
+    Node next;
+    Node prev;
+    Node(int data){
+        this.data = data;
+        next = null;
+        prev = null;
+    }
+}
+class LinkedList{
+    Node head;
+    void add(int data ){
+        Node new_node = new Node(data);
+        if(head == null){
+            head = new_node;
+            return;
+        }
+        Node current = head;
+        while(current.next !=null){
+            current = current.next;
+        }
+        current.next = new_node;
+    }
+}
+
+class Solution {
+    static Node insertAtHead(Node head,int K) {
+        // Write your code here.
+		Node nn = new Node(K);
+		nn.next = head;
+		nn.prev = null;
+
+		head = nn;
+
+		return head;
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int K = sc.nextInt();
+        LinkedList list = new LinkedList();
+        for (int i = 0; i < N; i++) {
+            list.add(sc.nextInt());
+        }
+        Node head = Solution.insertAtHead(list.head,K);
+        while (head != null) {
+            System.out.print(head.data + " ");
+            head = head.next;
+        }
+    }
+}
+
+//------------------Insertion in circular linked list-----------------//
+
+
+import java.util.*;
+import java.io.*;
+class Node{
+    int data;
+    Node next;
+    
+    Node(int x){
+        data = x;
+        
+    }
+    
+}
+
+public class Main {
+	static Node head;
+   static Node tail;
+	public static void addLast(int d){
+	Node nn=new Node(d);
+     if(head==null){
+		 head=nn;
+		 tail=nn;
+	 }
+    else{
+	 tail.next=nn;
+		 tail=nn;
+     }
+}
+    public static void main(String args[]) {
+        //your code here
+		Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+		for(int i=0; i<n; i++){
+			addLast(sc.nextInt());
+		}
+		int k=sc.nextInt();
+		//System.out.println(k);
+		
+		tail.next=head;
+
+		Node p1=head;
+		Node p2=head;
+		while(p1!=p2.next){
+			p2=p2.next;
+		}
+		//System.out.println(p2);
+Node nn=new Node(k);
+		nn.next=p2.next;
+		p2.next=nn;
+		//System.out.println(nn.data);
+   
+		p1=head;
+		p2=head;
+		//System.out.println(p2.data);
+		
+       do{
+		   System.out.print(p2.data+" ");
+			p2=p2.next;
+	   }while(p1!=p2);
+			
+		
+    }
+}
+
+//---------------DiffK-----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Solution{
+	public static int diffPossible(int[] A, int B) {
+        //Write your code here  
+		int n=A.length;
+		int i=0;
+		int j= 1;
+        int ans = 0;
+		while(j < n){
+         int diff=A[j]-A[i];
+
+			if(diff < B){
+				j++;
+			}
+			else if(diff > B){
+				i++;
+			}
+			else{
+				if(i != j){
+					return 1;
+				}
+				else{
+					j++;
+				}
+			}
+			
+		}
+
+		
+		return 0;	
+		
+    }
+}
+public class Main {
+	 public static void main (String[] args)
+		{
+			Scanner sc = new Scanner(System.in);		    
+		    	int n = sc.nextInt();
+				int[] A = new int[n];
+				for(int i=0;i<n;i++)
+				A[i] = sc.nextInt();
+				int k= sc.nextInt();           
+	    	Solution Obj= new Solution();	    	
+            System.out.println(Obj.diffPossible(A, k));
+	}
+}
+
+//---------------Two Sum in an Array-----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                long t=sc.nextLong();
+                int []a=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                int ind1=0;
+                int ind2=0;
+                
+                for(int i=0; i<n; i++){
+                        for(int j=i+1; j<n; j++){
+                                if(a[i]+a[j]==t){
+                                       ind1=i;
+                                        ind2=j;
+                                }
+                        }
+                        
+                }
+                System.out.println(ind1+" "+ind2);
+	}
+}
+
+//------------------Maximum Ones After Modification----------------//
+
+import java.util.*;
+
+class Accio {
+    public int longestOnes(int[] A, int B) {
+          //Your code goes here
+		int start = 0;
+		int end = 0;
+		int zero = 0;
+
+		while(end < A.length){
+			if(A[end] == 0){
+				zero++;
+			}
+			end++;
+
+			if(zero > B){
+				if(A[start] == 0){
+					zero--;
+				}
+				start++;
+			}
+		}
+
+		return end - start;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] A = new int[N];
+    	for(int i=0;i<N;i++)
+	    A[i] = sc.nextInt();
+        int B = sc.nextInt();
+        Accio Obj = new Accio();
+        System.out.println(Obj.longestOnes(A, B));
+    }
+}
+
+//----------------Maximum Ones After Modification------------------//
+
+import java.util.*;
+
+class Accio {
+    public int longestOnes(int[] A, int B) {
+          //Your code goes here
+		int start = 0;
+		int end = 0;
+		int zero = 0;
+
+		while(end < A.length){
+			if(A[end] == 0){
+				zero++;
+			}
+			end++;
+
+			if(zero > B){
+				if(A[start] == 0){
+					zero--;
+				}
+				start++;
+			}
+		}
+
+		return end - start;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] A = new int[N];
+    	for(int i=0;i<N;i++)
+	    A[i] = sc.nextInt();
+        int B = sc.nextInt();
+        Accio Obj = new Accio();
+        System.out.println(Obj.longestOnes(A, B));
+    }
+}
+
+//-------------------Counting Subarrays-----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+        Scanner sc=new Scanner(System.in);
+		int n=sc.nextInt();
+            int a[]=new int[n];
+            for(int i=0; i<n; i++)
+            {
+                a[i]=sc.nextInt();
+            }
+        int k=sc.nextInt();
+      int count=0;
+        
+        for(int i=0; i<n; i++)
+        {
+            int sum=0;
+            for(int j=i; j<n; j++)
+            {
+                sum+=a[j];
+              
+                if(sum<k)
+                {
+                    count++;
+                }
+                else{
+                    break;
+                }
+            }
+            
+        }
+        System.out.println(count);
+	}
+}
+
+//------------------Palindrome String---------------//
+
+import java.io.*;
+import java.util.*;
+
+class Solution {
+	public static int pel(String s){
+		
+		int n = s.length();
+		
+		int i = 0;
+		int j = n - 1;
+		
+		while(i < j){
+			if(s.charAt(i) != s.charAt(j)){
+				return 0;
+			}
+			i++;
+			j--;
+		}
+
+		return 1;
+	}
+       static int isPalindrome(String str)
+      {
+           // Your code here
+		  int n = str.length();
+		  if(n == 1){
+			  return 1;
+		  }
+		  str = str.toLowerCase();
+          StringBuilder res = new StringBuilder();
+		  for(int i = 0; i < n; i++){
+			  if((str.charAt(i) >= '0' && str.charAt(i) <= '9') || (str.charAt(i) >= 'a' && str.charAt(i) <= 'z')){
+				  res.append(str.charAt(i));
+			  }
+		  }
+
+		  int ans = pel(res.toString());
+
+		  return ans;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String str=sc.nextLine();
+        Solution Obj = new Solution();
+        int result = Obj.isPalindrome(str);
+        System.out.println(result);        
+    }
+}
+
+//-------------------Counting Triangles-----------------//
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static void main (String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+	    
+	    	int n = sc.nextInt();
+			int[] A = new int[n];
+	    	for(int i=0;i<n;i++)
+	        A[i] = sc.nextInt();
+            
+	    	Solution Obj= new Solution();
+	    	
+            System.out.println(Obj.nTriang(A));		
+	}
+  
+}
+class Solution{
+	public static int nTriang(int[] arr) {
+      // your code goes here
+		Arrays.sort(arr);
+		long count = 0;
+		for(int k = arr.length-1; k > 1; k--){
+			int i = 0;
+			int j = k - 1;
+            
+			while(i < j){
+				if((arr[i] + arr[j]) > arr[k]){
+					count += j - i;
+					j--;
+				}
+					
+				else{
+					i++;
+				}
+			}
+		}
+		int ans =(int)(count%1000000007);
+			return ans;
+		}
+}
+
+
+//----------------Container With Most Water------------------//
+
+import java.util.*;
+
+class Solution {
+    static Long mostWater(int size, int arr[]) {
+        //Write your code here
+		int i = 0;
+		int j = size - 1;
+        long ans = -1;
+		while(i < j){
+			int min = Math.min(arr[i],arr[j]);
+			long area = min * (j - i);
+
+			if(area > ans){
+				ans = area;
+			}
+			if(arr[i] <= arr[j]){
+				i++;
+			}
+			else{
+				j--;
+			}
+		}
+
+		return ans;
+    }
+
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n= sc.nextInt();
+        int array[] = new int[n];
+
+        for(int i=0; i<n; i++){
+            array[i]= sc.nextInt();
+        }
+        Solution Obj = new Solution();
+        System.out.println(Obj.mostWater(n,array));
+    }
+}
+
+//-----------------
