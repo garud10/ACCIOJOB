@@ -1655,4 +1655,780 @@ public class Main
 	}
 }
 
-//-------------
+//----------------------HRECURS - Hello Recursion-------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int rec(int index,int a[],int n){
+                
+                 if(index==n){
+                  return 0;
+                 }
+                
+
+            int sum=a[index]+rec(index+1,a,n);
+               
+                return sum;
+        }
+        
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int t=sc.nextInt();
+                int test=1;
+                for(int i=0; i<t; i++){
+                        
+                        int n=sc.nextInt();
+                        int a[]=new int[n];
+                        for(int j=0; j<n; j++){
+                                a[j]=sc.nextInt();
+                        }
+                         int sum=rec(0,a,n);
+
+                        System.out.println("Case "+test+": "+sum);
+                        test++;
+                }
+	}
+}
+
+//-------------------Recursive Fibonacci---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int  rec(int n){
+                  
+                if(n == 1 ){
+                        return 0 ;
+                }
+                if(n == 2){
+                        return 1;
+                }
+
+                int fand=rec(n-1)+rec(n-2);
+               return fand;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                  int fab=rec(n);
+                System.out.println(fab);
+	}
+}
+
+//------------------Recursive Digit Sum------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int rec(int p){
+                int sumOfDigit=0;
+                if(p<10){
+                        return p ;
+                }
+                  while(p>0){
+                          int digit=p%10;
+                          sumOfDigit +=digit;
+                          p=p/10;
+                  }
+                
+             
+        return rec(sumOfDigit);
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String n=sc.next();
+                int k=sc.nextInt();
+                int sd=0;
+             for(int i=0; i<n.length(); i++){
+                        sd=sd+n.charAt(i)-'0';
+             }
+                int sup=sd*k;
+                                       
+               int p=rec(sup );
+        System.out.println(p);
+	}
+}
+
+
+//--------------------No X--------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static String print(String s,int i){
+            String main="";
+                if(i==s.length()){
+                        return "";
+                }
+
+                if(s.charAt(i)!='x'){
+                      //  char c=s.charAt(i);
+                  main=s.charAt(i)+print(s,i+1);
+                     //   System.out.println(main);
+                }
+                else{
+                       main=print(s,i+1);
+                }
+
+                return main;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String s=sc.next();
+              System.out.println(print(s,0));
+	}
+}
+
+//-------------------------PairStar------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static String star(String s, int i){
+                String main="";
+              if(i+1==s.length()){
+                      return s.substring(i);
+              }
+                if(s.charAt(i)==s.charAt(i+1)){
+                        main=s.charAt(i)+"*"+star(s,i+1);
+                }
+                else{
+                        main=s.charAt(i)+star(s,i+1);
+                }
+
+                return main;
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String s=sc.next();
+
+                System.out.println(star(s,0));
+	}
+}
+
+//-------------------------Countabc-------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int rec(int index,String s){
+                if(index+3>s.length()){
+                        return 0;
+                }
+                
+                if(s.substring(index,index+3).compareTo("abc")==0 || s.substring(index,index+3).compareTo("aba")==0 ){
+                   return(1+rec(index+1,s));
+                }
+                else{
+                        return rec(index+1,s);
+                }
+                
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String s=sc.next();
+                System.out.println(rec(0,s));
+                
+	}
+}
+
+//-------------Array11-------------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static int rec(int index,int a[]){
+                if(index==a.length){
+                        return 0;
+                }
+                if(a[index]==11){
+                        return (1+rec(index+1,a));
+                }
+                else{
+                        return (rec(index+1,a));
+                }
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int a[]=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                System.out.println(rec(0,a));
+	}
+}
+
+//--------------------Two Sum in an Array---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                long t=sc.nextLong();
+                int []a=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                int ind1=0;
+                int ind2=0;
+                
+                for(int i=0; i<n; i++){
+                        for(int j=i+1; j<n; j++){
+                                if(a[i]+a[j]==t){
+                                       ind1=i;
+                                        ind2=j;
+                                }
+                        }
+                        
+                }
+                System.out.println(ind1+" "+ind2);
+	}
+}
+
+//-----------------------Maximum Contiguous Subarray Sum---------------------//
+
+import java.util.*;
+
+class Main {
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        int a[] = new int[n];
+        for(int i=0;i<n;i++){
+            a[i] = input.nextInt();
+        }
+        Solution ob =new Solution();
+        long ans = ob.maxSubarraySum(a,n);
+        System.out.println(ans);
+    }
+}
+class Solution{
+    public long maxSubarraySum(int a[],int n){
+        //Write code here
+		int sum = 0;
+		int maxSum = Integer.MIN_VALUE;
+		
+		for(int i = 0; i < n; i++){
+			sum += a[i];
+			if(maxSum < sum){
+				maxSum = sum;
+			}
+			if(sum < 0) sum = 0;
+		}
+		return maxSum;
+    }
+}
+
+//---------------------0-1-2 Sorting-----------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int a[]=new int[n];
+                int zero=0;
+                int one=0;
+                int two=0;
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                        if(a[i]==0){
+                                zero++;
+                        }
+                        else if(a[i]==1){
+                                one++;
+                        }
+                        else{
+                                two++;
+                        }
+                }
+                int i=0;
+                while(zero>0){
+                        a[i]=0;
+                        i++;
+                        zero--;
+                }
+               while(one>0){
+                        a[i]=1;
+                        i++;
+                       one--;
+                }
+                while(two>0){
+                        a[i]=2;
+                        i++;
+                        two--;
+                }
+                
+                for(int j=0; j<n; j++)
+                {
+                        System.out.print(a[j]+" ");
+                }                        
+                
+               
+                       
+	}
+}
+
+//-------------------Zigzag Conversion----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                String s=sc.next();
+                int k=sc.nextInt();
+                if(k==1){
+                        System.out.println(s);
+                }
+                else{
+                int count=0;
+                String a[]=new String[k];
+                boolean flag=true;
+                for(int i=0; i<s.length(); i++){
+                        if(flag==true){
+                                a[count++]+=s.charAt(i);
+                                if(count==k-1){
+                                        flag=false;
+                                }
+                        }
+                     else{
+                              a[count--]+=s.charAt(i);
+                              if(count==0){
+                                      flag=true;
+                              }
+                      }
+                }
+                String res="";
+                for(int i=0; i<a.length; i++){
+                        res+=a[i];
+                }
+                res=res.replace("null","");
+                System.out.println(res);
+                }
+	}
+}
+
+// --------------------Maximum Consecutive Ones------------------//
+
+import java.io.*;
+import java.util.*;
+
+class Solution{
+     public static int maxConsecutiveOnes(int[] arr, int n) {
+        // Your code here
+		 int start = 0;
+		 int end = 0;
+		int zero = 0;
+		 int max = 0;
+		 while(end < n){
+			 if(arr[end] == 0) zero++;
+			 end++;
+
+			 while(start < end && zero > 0){
+				 if(arr[start] == 0) zero--;
+				 start++;
+			 }
+
+			 if(zero == 0) max = Math.max(max,(end - start));
+		 }
+		 return max;
+}
+}
+public class Main {
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+        Solution obj = new Solution();
+        System.out.println(obj.maxConsecutiveOnes(arr, n));
+    }
+}
+
+
+//-----------------------Second Largest----------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int a[]=new int[n];
+                int max=0;
+                int smax=0;
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                        if(a[i]>max){
+                                smax=max;
+                                max=a[i];
+                        }
+                        else if(a[i]<max && a[i]>smax){
+                                smax=a[i];
+                        }
+                }
+                System.out.println(smax);
+                
+	}
+}
+
+//--------------------Count pairs with given Sum--------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int a[]=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                int k=sc.nextInt();
+                Arrays.sort(a);
+                      int count=0;
+                for(int i=0; i<n; i++){
+                        for(int j=i+1; j<n; j++){
+                                if(a[i]+a[j]==k){
+                                        count++;
+                                }
+                        }
+                }
+               
+            
+               
+                System.out.println(count);
+	}
+}
+
+//----------------------Two Sum in sorted Array---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int k=sc.nextInt();
+                int a[]=new int [n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                
+                 
+               // int j=n-1;
+                int count =0;
+                for(int i=0; i<n; i++){
+               for(int j=i+1; j<n; j++){
+                        if(a[i]+a[j]==k){
+                              System.out.println((i+1)+" "+(j+1));
+                                count++;
+                                break;
+                        }
+                        
+                }
+                        if(count>0){
+                                break;
+                        }
+                }
+	}
+}
+
+//----------------------First Come First Serve---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int  n=sc.nextInt();
+                int k=sc.nextInt();
+                int a[]=new int[n];
+                int max=0;
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                        max=Math.max(max,a[i]);
+                }
+                int arr[]=new int[max+1];
+               for(int i=0; i<n; i++){
+                   arr[a[i]]++;
+               }
+                int x=-1;
+                 for(int i=0; i<n; i++){
+                   if(arr[a[i]]==k){
+                           x=a[i];
+                           break;
+                   }
+               }
+                
+                System.out.println(x);
+	}
+}
+
+//--------------------Implementing Merge Sort------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        public static void combine(int start,int mid,int end,int a[]){
+                ArrayList<Integer> A=new ArrayList<>();
+                for(int i=start; i<=mid; i++){
+                        A.add(a[i]);
+                }
+                ArrayList<Integer> B=new ArrayList<>();
+               for(int i=mid+1; i<=end; i++){
+                        B.add(a[i]);
+                }
+                ArrayList<Integer> C=new ArrayList<>();
+                int i=0;
+                int j=0;
+                while(i<A.size() && j<B.size()){
+                        if(A.get(i)<= B.get(j)){
+                                C.add(A.get(i));
+                                i++;
+                        }
+                        else{
+                                C.add(B.get(j));
+                                j++;
+                        }
+                }
+
+                while(i<A.size()){
+                        C.add(A.get(i));
+                        i++;
+                }
+                 while(j<B.size()){
+                        C.add(B.get(j));
+                        j++;
+                }
+
+                for(int k=0; k<C.size(); k++){
+                        a[start+k]=C.get(k);
+                }
+                
+        }
+        public static void merg(int start,int end,int a[]){
+
+                if(start==end){
+                        return;
+                }
+                  int mid=(start+end)/2;
+
+                merg(start,mid,a);
+                merg(mid+1,end,a);
+
+                combine(start,mid,end,a);
+                
+        }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int a[]=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                merg(0,n-1,a);
+                
+                for(int i=0; i<n; i++){
+                        System.out.print(a[i]+" ");
+                }
+	}
+}
+
+//-----------------Counting Inversions-----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+    public static int merge(int start, int mid, int end, int arr[]){
+            int ans=0;
+        ArrayList<Integer> a=new ArrayList<Integer>();
+        for(int i=start; i<=mid; i++){
+            a.add(arr[i]);
+        }
+        ArrayList<Integer> b=new ArrayList<Integer>();
+        for(int i=mid+1; i<=end; i++){
+            b.add(arr[i]);
+        }
+
+        ArrayList<Integer> c=new ArrayList<Integer>();
+       int i=0;
+        int j=0;
+        while(i<a.size() && j<b.size()){
+            if(a.get(i)<=b.get(j)){
+                c.add(a.get(i));
+                i++;
+            }
+            else{
+                c.add(b.get(j));
+                j++;
+                ans+=(a.size()-i);
+            }
+        }
+        while(i<a.size()){
+            c.add(a.get(i));
+            i++;
+        }
+        while(i<b.size()){
+            c.add(b.get(j));
+        j++;
+        }
+
+        for(int k=0; k<c.size(); k++){
+            arr[start+k]=c.get(k);
+        }
+
+
+        return ans;
+        
+        
+    }
+    public static int mergesort(int start, int end, int arr[]){
+
+        if(start==end){
+            return 0;
+        }
+
+        int mid=(start+end)/2;
+         int ans=0;
+
+        ans+=mergesort(start,mid,arr);
+
+        ans+=mergesort(mid+1,end,arr);
+
+        ans+=merge(start,mid,end,arr);
+
+
+        return ans;
+        
+    }
+    
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		//your code here
+		Scanner in = new Scanner(System.in);
+        int t = in.nextInt();
+        while(t>0)
+        {
+    	    int n = in.nextInt();
+    	    int arr[] = new int[n];
+    	    
+    	    for(int i=0;i<n;i++)
+    	    {
+    	        arr[i] = in.nextInt();
+    	    }
+    	    
+    	   int inv=mergesort(0,n-1,arr);
+    	    
+    	    System.out.println(inv);
+    	    t--;
+        }
+	}
+}
+
+//-------------------------Quick Sort-1----------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int a[]=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                for(int i=0; i<n; i++){
+                        if(a[i]<a[0]){
+                                System.out.print(a[i]+" ");
+                        }
+                }
+                 for(int i=0; i<n; i++){
+                        if(a[i]==a[0]){
+                                System.out.print(a[i]+" ");
+                        }
+                }
+                 for(int i=0; i<n; i++){
+                        if(a[i]>a[0]){
+                                System.out.print(a[i]+" ");
+                        }
+                }
+	}
+}
+
+//---------------------
