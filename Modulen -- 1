@@ -1,0 +1,1070 @@
+//-------Celsius to Fahrenheit------//
+import java.util.*;
+import java.io.*;
+
+public class Main {
+        public static int fah(int n){
+                int f=n*9/5+32;
+                return f;
+        }
+    public static void main(String args[]) {
+      Scanner sc= new Scanner(System.in);
+      int c=sc.nextInt();
+      
+      System.out.println(fah(c));
+    }
+}
+
+
+//------------Leap Year-----------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		//your code here
+    Scanner sc= new Scanner(System.in);
+    int year= sc.nextInt();
+    if(((year%4==0) && (year%100!=0)) || (year%400==0)){
+      System.out.println("1");
+    }
+        else{
+          System.out.println("0");
+        }
+	}
+}
+
+//-----------Which angled triangle-----------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int a=sc.nextInt();
+                int b=sc.nextInt();
+                int c=sc.nextInt();
+
+               // Math.max(a,b,c);
+                if((a*a)+(b*b)<c*c){
+                        System.out.println("3");
+                }
+                else if((a*a)+(b*b)>c*c){
+                        System.out.println("1");
+                }
+                else{
+                        System.out.println("2");
+                }
+	}
+}
+
+
+//--------------Big Light------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int h1=sc.nextInt();
+                int h2=sc.nextInt();
+                int v1=sc.nextInt();
+                        int v2=sc.nextInt();
+               if(v1==v2){
+                       System.out.println("false");
+               }
+                else{
+                int n=h2-h1;
+                int d=v1-v2;
+
+                
+                        if(n%d==0){
+                                System.out.println("true");
+                        }
+                        else{
+                                System.out.println("false");
+                        }
+
+                }
+	}
+}
+
+
+
+//----------Fahrenheit to Celsius-------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+                   Scanner sc= new Scanner(System.in);
+                int f=sc.nextInt();
+                int c=(f-32)*5/9;
+
+                System.out.println(c);
+	}
+}
+
+
+//-------------Number of Days---------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int m=sc.nextInt();
+                if(m==2){
+                        System.out.println("28");
+                }
+                        else if(m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12){
+                                System.out.println("31");
+                        }
+                             
+                                
+                                
+                else{
+                        System.out.println("30");
+                }
+                
+	}
+}
+
+
+//-------------HCF of two Numbers-----------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc= new Scanner(System.in);
+                int a= sc.nextInt();
+                int b= sc.nextInt();
+                int n=0;
+                int i=1;
+                while(i<=a && i<=b){
+                        if(a%i==0 && b%i==0){
+                                n=i;
+                        }
+                        i++;
+                }
+                System.out.println(n);
+	}
+}
+
+//----------------Sum of Natural Numbers (Functions)----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+        		static long NumberSum(long n){
+                        long s=0;
+                        for(long i=1; i<=n; i++){
+                                s=s+i;
+                                
+                                        }
+                                return s;
+                }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+         Scanner sc= new Scanner(System.in);
+                long n=sc.nextLong();
+               
+                System.out.println(NumberSum(n));
+                
+	}
+}
+
+//----------------Reverse digits of a Number-----------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int temp=0;
+                while(n>0){
+                        int d=n%10;
+                        temp =(temp*10)+d;
+                        n=n/10;
+                        
+                }
+                System.out.println(temp);
+	}
+}
+
+
+//-----------Power of a Number---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int a=sc.nextInt();
+                int b=sc.nextInt();
+                int p=1;
+                for(int i=1; i<=b; i++){
+                        p=p*a;
+                }
+                System.out.println(p);
+	}
+}
+
+
+//-----------------Largest Number At Least Twice of Others------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc= new Scanner(System.in);
+                int n=sc.nextInt();
+                int[]a=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                        
+                }
+                int s=0;
+                int f=0;
+                for(int i=0; i<n; i++){
+                        int count=0;
+                        for(int j=0; j<n; j++){
+                                if(a[i]>=2*a[j]){
+                                        count =count+1;
+                                }
+                                if(count==n-1){
+                                       s=i;
+                                        f=1;
+                                }
+                        }
+                }
+                if(f==1){
+                        System.out.println(s);
+                }
+                else{
+                        System.out.println("-1");
+                }
+	}
+}
+
+
+
+//----------------ArmstrongNumber---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		int n=500;
+                int x,d;
+               for(int i=1; i<=n; i++){
+                       int sum=0;
+                       x=i;
+                       while(x>0){
+                         d=x%10;
+                               sum=sum+(d*d*d);
+                               x=x/10;
+                       }
+                       if(sum==i){
+                       System.out.println(sum);
+                       }
+               }
+
+
+
+
+
+
+
+                
+	}
+}
+
+//------------------PEAK ELEMENT---------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int[]a=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                 int peak=-1;
+                if(a[0]>a[1]){
+                        peak=0;
+                }
+                for(int i=1; i<n-1; i++){
+                        if(peak==-1 && a[i]>a[i-1] && a[i]>a[i+1]){
+                                peak=i;
+                                break;
+                        }
+                }
+                if(peak==-1 && a[n-1]>a[n-2]){
+                peak=n-1;
+                }
+                System.out.println(peak);
+                        
+                
+	}
+}
+
+//---------------Factorial with loop---------------//
+
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc= new Scanner(System.in);
+      long n=sc.nextInt();
+      long f=1;
+      for(long i=n; i>0; i--){
+        f=f*i;
+      }
+           
+      System.out.println(f);
+            
+    }
+}
+
+
+//------------------Print Sum 10---------------//
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+                int sum=0;
+		for(int i=1; i<=10; i++){
+                        sum=sum+i;
+                }
+                System.out.println(sum);
+	}
+}
+
+
+
+//----------------Marc Cakewalk-------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int[]a=new int[n];
+
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+             /*   long temp=0;
+                for(int i=0; i<n-1; i++){
+                     //   for(int j=i+1;j<n; j++){
+                        if(a[i]<a[i+1]){
+                                temp=a[i];
+                                a[i]=a[i+1];
+                                a[i+1]=temp;
+                                
+                       }
+                        }
+                */
+             //  for(int i=0; i<n; i++){
+             //          System.out.print(a[i]+" ");
+            //   }
+                Arrays.sort(a);
+                                long sum=0;
+                long j=0;
+                     for(int i=n-1; i>=0; i--){
+                            sum=sum+(a[i]*(long)Math.pow(2,j)); 
+                             
+                            j++; 
+                           
+                     }
+                                System.out.println(sum);
+
+
+
+
+                
+                        
+                
+	}
+}
+
+//----------------FACING THE SUN------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+
+           Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int[]a=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                int count=1;
+                int max=a[0];
+                for(int i=1; i<n; i++){
+                        if(a[i]>max){
+                                count++;
+                                max=a[i];
+                        }
+                }
+                System.out.println(count);
+
+
+
+
+
+
+                
+	}
+}
+
+
+
+//--------------------Average Calculator----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int []a=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+int sum=0;
+                for(int i=0; i<n; i++){
+                      sum=sum+a[i];  
+                }
+                System.out.println(sum/n);
+	}
+}
+
+
+//---------------Sum of Array Except Self---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int[]a=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+               
+                for(int i=0; i<n; i++){
+                        int temp=0;
+                        for(int j=0; j<n; j++){
+                                if(i!=j){
+                                        temp=temp+a[j];
+                                        
+                                }
+                  }
+                        System.out.print(temp+" ");
+                       }
+                
+                
+	}
+}
+
+//------------------Subarray sum divisible by k--------------//
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static int subarrayDivisbleByK(int arr[], int n, int k){
+        Map<Integer,Integer> hm = new HashMap<>();
+		hm.put(0,1);
+		int sum = 0;
+		int count = 0;
+		for(int i=0; i<n; i++){
+			sum += arr[i];
+			int rem = sum % k;
+			if(rem < 0) rem += k;
+
+			int val = hm.getOrDefault(rem,0);
+			count += val;
+			hm.put(rem,val+1);
+		}
+		return count;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int k=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;++i){
+            arr[i]=sc.nextInt();
+        }
+        int result = subarrayDivisbleByK(arr, n, k);
+        System.out.print(result);        
+        System.out.println('\n');
+    }
+}
+
+//-----------------Searching a number-------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int k=sc.nextInt();
+                int[]a=new int[n];
+                int position=-1;
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+
+                for(int i=0; i<n; i++){
+                        if(a[i]==k){
+                                position=i+1;
+                                break;
+                        }
+                }
+                System.out.println(position);
+	}
+}
+
+//------------------Divisible Sum Pairs-------------//
+
+import java.io.*;
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc= new Scanner(System.in);
+      int n=sc.nextInt();
+        int []a=new int[n];
+      int k=sc.nextInt();
+      int count=0;
+      for(int i=0; i<n; i++){
+        a[i]=sc.nextInt();
+      }
+      for(int i=0; i<n; i++){
+        for(int j=i+1; j<n; j++){
+          if((a[i]+a[j])%k==0){
+            count=count+1;
+          }
+        }
+      }
+      System.out.println(count);
+      
+    }
+}
+
+//----------------2nd Largest from array----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc= new Scanner(System.in);
+                int n=sc.nextInt();
+                int[]a=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+              int max=Integer.MIN_VALUE;
+                int smax=Integer.MIN_VALUE;
+                for(int i=0; i<n; i++){
+                        if(a[i]>=max){
+                                smax=max;
+                                max=a[i];
+                        }
+                        else if(a[i]<max && a[i]>smax){
+                                smax=a[i];
+                        }
+                }
+          System.out.println(smax);
+
+
+
+
+                
+	}
+}
+
+
+
+//------------------Sorted Insert Position----------------//
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+
+    public static int searchInsert(int[] a, int b) {
+        int start = 0;
+		int end = a.length - 1;
+		int ans = -1;
+
+		while(start <= end){
+			int mid = (start + end) / 2;
+
+			if(a[mid] == b) return mid;
+			else if(a[mid] > b){
+				ans = mid;
+				end = mid - 1;
+			}
+			else start = mid + 1;
+		}
+		if(ans == -1) return a.length;
+		return ans;
+    }
+    
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[] A = new int[N];
+        for(int i=0;i<N;i++){
+            A[i] = sc.nextInt();
+        }
+        int B = sc.nextInt();
+        System.out.println(searchInsert(A,B));
+    }
+}
+
+
+//----------------Angry Professor-----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int t=sc.nextInt();
+                for(int j=0; j<t; j++){
+                int n=sc.nextInt();
+                int k=sc.nextInt();
+                int[]a=new int[n];
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                int count=0;
+                for(int i=0; i<n; i++){
+                        if(a[i]<=0){
+                                count++;
+                        }
+                }
+                if(count<k){
+                        System.out.println("YES");
+                }
+                else{
+                        System.out.println("NO");
+                }
+                }
+
+
+
+
+                        
+                
+	}
+}
+
+//----------------Alternate Manner Matrix Traversal--------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int m=sc.nextInt();
+                int n=sc.nextInt();
+                int[][]a=new int[m][n];
+                for(int i=0; i<m; i++){
+                        for(int j=0; j<n; j++){
+                                a[i][j]=sc.nextInt();
+                        }
+                }
+                for(int i=0; i<m; i++){
+                         if(i%2!=0){
+                                 for(int j=n-1; j>=0; j--){
+                                      System.out.print(a[i][j]+" ");
+                                 }
+                                 
+                         }
+                                else{
+                                        for(int j=0; j<n; j++){
+                                        System.out.print(a[i][j]+" ");
+                                }
+
+                        }
+                       
+                }
+	}
+}
+
+//------------Alt Matrix Sum--------------//
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int[][]a=new int[n][n];
+                for(int i=0; i<n; i++){
+                        for(int j=0; j<n; j++){
+                                a[i][j]=sc.nextInt();
+                        }
+                }
+                int bsum=0;
+                int wsum=0;
+
+                for(int i=0; i<n; i++){
+                        for(int j=0; j<n; j++){
+                                if(i%2==0 && j%2==0){
+                                        bsum=bsum+a[i][j];
+                                }
+                                
+                               else if(i%2!=0 && j%2!=0){
+                                       bsum=bsum+a[i][j];
+                                }
+                                else{
+                                        wsum=wsum+a[i][j];
+                                }
+                        }
+                }
+                System.out.println(bsum);
+                System.out.println(wsum);
+
+
+
+                
+	}
+}
+
+//-------------Boolean Matrix Problem-----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int row=sc.nextInt();
+                int col=sc.nextInt();
+                int[][]a=new int[row][col];
+                for(int i=0; i<row; i++){
+                        for(int j=0; j<col; j++){
+                                a[i][j]=sc.nextInt();
+                        }
+                }
+                for(int i=0; i<row; i++){
+                        for(int j=0; j<col; j++){
+                                if(a[i][j]==1){
+                                        for(int k=0; k<col; k++){
+                                                a[i][k]=1;
+                                        }
+                                }
+                        }
+                        
+                }
+           for(int i=0; i<row; i++){
+                        for(int j=0; j<col; j++){
+                            System.out.print(a[i][j]+" ");
+                        }
+                   System.out.println();
+                }
+                
+	}
+}
+
+
+//-----------------Spirally traversing a matrix---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+Scanner sc=new Scanner(System.in);
+                int r=sc.nextInt();
+                int c=sc.nextInt();
+                int a[][]=new int[r][c];
+                for(int i=0; i<r; i++){
+                        for(int j=0; j<c; j++){
+                                a[i][j]=sc.nextInt();
+                        }
+                }
+                int left=0;
+                int right=c-1;
+                int top=0;
+                int bottom=r-1;
+                      while(left<=right && top<=bottom){
+                for(int i=left; i<=right; i++){
+                        System.out.print(a[top][i]+" ");
+                }
+                              boolean flag=false;
+              top++;
+                for(int i=top; i<=bottom; i++){
+                        flag=true;
+                        
+                        System.out.print(a[i][right]+" ");
+                        
+                }
+                              if(flag=true){
+                                      flag=false;
+                right--;
+                for(int i=right; i>=left; i--){
+                        flag=true;
+                        
+                        System.out.print(a[bottom][i]+" ");
+                        
+                }
+                              }
+                              if(flag==true){
+                bottom--;
+                for(int i=bottom; i>=top; i--){
+                        System.out.print(a[i][left]+" ");
+                        
+                }
+                              }
+                left++;
+
+                      }
+	}
+                
+}
+
+//-----------------Transpose of Matrix----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    int[][]a=new int [n][n];
+    int [][]a1=new int[n][n];
+    for(int i=0; i<a.length; i++){
+      for(int j=0; j<a[i].length; j++){
+        a[i][j]=sc.nextInt();
+      }
+    }
+    
+    for(int i=0; i<a1.length; i++){
+      for(int j=0; j<a1[i].length; j++){
+       // for(int k=0; k<=i;k++){
+        a1[j][i]=a[i][j];
+      }
+        
+        
+    }
+   // }
+    for(int i=0; i<a1.length; i++){
+      for(int j=0; j<a1.length; j++){
+      System.out.print(a1[i][j]+" ");
+      }
+      System.out.println();
+    }
+    
+    
+    
+    
+	}
+}
+
+//----------------Rotate a Matrix by 90 Degree------------------//
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+	public static void main(String args[]) {
+		
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+                int m=sc.nextInt();
+    int[][]a=new int[n][m];
+                for(int i=0; i<n; i++){
+                        for(int j=0; j<m; j++){
+                                a[i][j]=sc.nextInt();
+                        }
+                }
+                int temp=0;
+                for(int i=0; i<n; i++){
+                        for(int j=0; j<m; j++){
+                                if(i>=j){
+                                        temp=a[i][j];
+                                        a[i][j]=a[j][i];
+                                        a[j][i]=temp;
+                                }
+                        }
+                }
+                
+                for(int i=0; i<n; i++){
+                        int start=0;
+                int end=n-1;
+                       for(int j=0; j<m; j++){
+                               if(start<end){
+                            temp=a[i][start];
+                        a[i][start]=a[i][end];
+                        a[i][end]=temp;
+
+                                       start++;
+                                       end--;
+                             
+                               }   
+                        }
+                }
+                for(int i=0; i<n; i++){
+                        for(int j=0; j<m; j++){
+                              System.out.print(a[i][j]+" ");
+                        }
+                        System.out.println();
+                }
+    
+   
+    
+    
+	}
+}
+
+//----------------Shuffle String---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main
+{
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner sc=new Scanner(System.in);
+                int n=sc.nextInt();
+                int[]a=new int[n];
+                String s=sc.next();
+                for(int i=0; i<n; i++){
+                        a[i]=sc.nextInt();
+                }
+                char []arr=new char[n];
+                   for(int i=0; i<n; i++){
+                             arr[a[i]]=s.charAt(i);
+                                
+                           }
+               
+                   for(int i=0; i<n; i++){
+                         System.out.print(arr[i]);        
+                   }
+                
+	}
+}
+
+//---------------
