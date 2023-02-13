@@ -1,0 +1,2020 @@
+//------------- insertNode in BST----------//
+
+
+import java.util.*;
+import java.io.*;
+
+class Node{
+    int val;
+    Node left, right;
+    Node(int val){
+        this.val = val;
+        left = null;
+        right = null;
+    }
+}
+class BST{
+    Node root = null;
+    BST(){
+        
+    }
+    BST(Node root){
+        root=root;
+    }
+    Node insert(Node root, int val){
+        if(root == null){
+            root = new Node(val);
+            return root;
+        }
+        if(root.val == val)
+            return root;
+        if(val < root.val){
+            root.left = insert(root.left, val);
+        }else{
+            root.right = insert(root.right, val);
+        }
+        return root;
+    }
+    void print(Node root){
+        System.out.print(root.val + " ");
+        if(root.left != null){
+            print(root.left);
+        }
+        if(root.right != null){
+            print(root.right);
+        }
+    }
+}
+
+class Solution{
+    public Node insertNode(Node root, int val){
+        // WRITE YOUR CODE HERE
+
+		if(root==null){
+			Node me = new Node(val);
+			return me;
+		}
+		if(root.val == val) return root;
+		if(val > root.val){
+			root.left = insertNode(root.left,val);
+		}else if(val<root.val){
+			root.right = insertNode(root.right,val);
+		}
+		return root;
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt(), k = input.nextInt();
+        BST t = new BST();
+        for(int i = 0; i < n; i++){
+            t.root = t.insert(t.root, input.nextInt());
+        }
+        Solution obj=new Solution();
+        t.root= obj.insertNode(t.root, k);
+        t.print(t.root);
+    }
+}
+
+
+//----------------Basic operations in BST -------------//
+
+import java.io.*;
+import java.util.*;
+
+public class Main {
+  public static class Node {
+    int data;
+    Node left;
+    Node right;
+
+    Node(int data, Node left, Node right) {
+      this.data = data;
+      this.left = left;
+      this.right = right;
+    }
+  }
+
+  public static class Pair {
+    Node node;
+    int state;
+
+    Pair(Node node, int state) {
+      this.node = node;
+      this.state = state;
+    }
+  }
+
+  public static Node construct(Integer[] arr) {
+    Node root = new Node(arr[0], null, null);
+    Pair rtp = new Pair(root, 1);
+
+    Stack<Pair> st = new Stack<>();
+    st.push(rtp);
+
+    int idx = 0;
+    while (st.size() > 0) {
+      Pair top = st.peek();
+      if (top.state == 1) {
+        idx++;
+        if (arr[idx] != null) {
+          top.node.left = new Node(arr[idx], null, null);
+          Pair lp = new Pair(top.node.left, 1);
+          st.push(lp);
+        } else {
+          top.node.left = null;
+        }
+
+        top.state++;
+      } else if (top.state == 2) {
+        idx++;
+        if (arr[idx] != null) {
+          top.node.right = new Node(arr[idx], null, null);
+          Pair rp = new Pair(top.node.right, 1);
+          st.push(rp);
+        } else {
+          top.node.right = null;
+        }
+
+        top.state++;
+      } else {
+        st.pop();
+      }
+    }
+
+    return root;
+  }
+
+  public static void display(Node node) {
+    if (node == null) {
+      return;
+    }
+
+    String str = "";
+    str += node.left == null ? "." : node.left.data + "";
+    str += " <- " + node.data + " -> ";
+    str += node.right == null ? "." : node.right.data + "";
+    System.out.println(str);
+
+    display(node.left);
+    display(node.right);
+  }
+
+  public static int size(Node node) {
+    // write your code here
+	  if(node == null) return 0;
+	  int leftSubtreeSize = size(node.left);
+	  int rightSubtreeSize = size(node.right);
+	  return 1 +leftSubtreeSize + rightSubtreeSize;
+  }
+
+  public static int sum(Node node) {
+    // write your code here
+	  if(node == null) return 0;
+	  int leftSubtreeSum = sum(node.left);
+	  int rightSubtreeSum = sum(node.right);
+	  return node.data + leftSubtreeSum + rightSubtreeSum;
+  }
+
+  public static int max(Node root) {
+	    // write your code here
+			Node temp = root;
+		  while(temp.right != null) temp= temp.right;
+		  return temp.data;
+	  
+  }
+
+  public static int min(Node node) {
+    // write your code here
+	  if(node.left == null) return node.data;
+	  return min(node.left);
+	  // return node.left == null?node.data:min(node.left);
+  }
+
+	// (true or false)?(first):(second)
+
+  public static boolean find(Node node, int data){
+    // write your code here
+	  if(node == null) return false;
+	  if(node.data == data) return true;
+	  if(node.data < data) return find(node.right,data);
+	  else return find(node.left,data);
+	  // return node==null?false:(node.data==data?true:(node.data<data?find(node.right,data):find(node.left,data)));
+  }  
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    int n = Integer.parseInt(br.readLine());
+    Integer[] arr = new Integer[n];
+    String[] values = br.readLine().split(" ");
+    for (int i = 0; i < n; i++) {
+      if (values[i].equals("n") == false) {
+        arr[i] = Integer.parseInt(values[i]);
+      } else {
+        arr[i] = null;
+      }
+    }
+
+    int data = Integer.parseInt(br.readLine());
+
+    Node root = construct(arr);
+
+    int size = size(root);
+    int sum = sum(root);
+    int max = max(root);
+    int min = min(root);
+    boolean found = find(root, data);
+
+    System.out.println(size);
+    System.out.println(sum);
+    System.out.println(max);
+    System.out.println(min);
+    System.out.println(found);
+  }
+
+}
+
+//-------------Delete Node in BST ------------//
+
+
+import java.util.*;
+import java.io.*;
+
+class Node{
+    int val;
+    Node left, right;
+    Node(int val){
+        this.val = val;
+        left = null;
+        right = null;
+    }
+}
+class BST{
+    Node root = null;
+    BST(){
+        
+    }
+    BST(Node root){
+        root=root;
+    }
+    Node insert(Node root, int val){
+        if(root == null){
+            root = new Node(val);
+            return root;
+        }
+        if(root.val == val)
+            return root;
+        if(val < root.val){
+            root.left = insert(root.left, val);
+        }else{
+            root.right = insert(root.right, val);
+        }
+        return root;
+    }
+    void print(Node root){
+        System.out.print(root.val + " ");
+        if(root.left != null){
+            print(root.left);
+        }
+        if(root.right != null){
+            print(root.right);
+        }
+    }
+}
+
+class Solution{
+	public int getMin(Node root){
+		if(root.left == null) return root.val;
+		return getMin(root.left);
+	}
+    public Node deleteNode(Node root, int val){
+        // WRITE YOUR CODE HERE
+		
+		if(root == null) return null;
+		if(root.val == val){
+			if(root.left == null && root.right == null) return null; // leaf node
+			// we will come to this line if one or both child are present
+			else if(root.left == null && root.right != null){// root is having right only
+				return root.right;
+			}else if(root.left != null && root.right == null){//root is having left only
+				return root.left;
+			}else{// we will come to this line if both child are present
+				//Step1: we will get the minimum from rightsubtree
+				int minVal = getMin(root.right);
+				//step 2 : overwrite 
+				root.val = minVal;
+				//step 3: delete minVal from the right subtree
+				root.right = deleteNode(root.right,minVal);
+			}
+		}
+		else if(root.val < val){
+			root.right = deleteNode(root.right,val);
+		}else{
+			root.left = deleteNode(root.left,val);
+		}
+		return root;
+    }
+}
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt(), k = input.nextInt();
+        BST t = new BST();
+        for(int i = 0; i < n; i++){
+            t.root = t.insert(t.root, input.nextInt());
+        }
+        Solution obj=new Solution();
+        t.root= obj.deleteNode(t.root, k);
+        t.print(t.root);
+    }
+}
+
+//-------------- Vlidate BST -------------//
+
+import java.util.LinkedList; 
+import java.util.Queue; 
+import java.io.*;
+import java.util.*;
+
+class Node{
+    int data;
+    Node left;
+    Node right;
+    Node(int data){
+        this.data = data;
+        left=null;
+        right=null;
+    }
+}
+
+class Main {
+    static Node treeBuilder(String str){  
+        if(str.length()==0 || str.charAt(0)=='-'){
+            return null;
+        }
+        String ip[] = str.split(" ");
+        Node root = new Node(Integer.parseInt(ip[0]));
+        Queue<Node> queue = new LinkedList<>(); 
+        queue.add(root);
+        int i = 1;
+        while(queue.size()>0 && i < ip.length) {
+            Node currNode = queue.peek();
+            queue.remove();
+            String currVal = ip[i];
+            if(!currVal.equals("-1")) {
+                currNode.left = new Node(Integer.parseInt(currVal));
+                queue.add(currNode.left);
+            }
+            i++;
+            if(i >= ip.length)
+                break;
+            currVal = ip[i];
+            if(!currVal.equals("-1")) {
+                currNode.right = new Node(Integer.parseInt(currVal));
+                queue.add(currNode.right);
+            }
+            i++;
+        }
+        
+        return root;
+    }
+    static void printInorder(Node root){
+        if(root == null)
+            return;
+        printInorder(root.left);
+        System.out.print(root.data+" ");
+        printInorder(root.right);
+    }
+    
+  public static void main (String[] args) throws IOException{
+          BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+          int t=Integer.parseInt(br.readLine());
+          while(t > 0){
+              String s = br.readLine();
+            Node root = treeBuilder(s);
+              Solution g = new Solution();
+              if(g.isBST(root))
+              System.out.println("true");
+          else
+              System.out.println("false");
+                t--;
+        }
+    }
+  
+}
+
+class Solution{
+
+	boolean validate(Node node,int lower,int upper){
+		if(node == null) return true;
+		if(node.data <= lower || node.data >= upper) return false;
+		boolean isLeftBst = validate(node.left,lower,node.data);
+		boolean isRightBst = validate(node.right,node.data,upper);
+		return isLeftBst && isRightBst;
+	}
+	
+    boolean isBST(Node root){
+       // Your Code Here
+       return validate(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+    }
+}
+
+
+
+//----------------- Recover BST ----------------//
+
+import java.util.*;
+
+public class Main {
+    public static Scanner scn = new Scanner(System.in);
+
+    public static class TreeNode {
+        int val = 0;
+        TreeNode left = null;
+        TreeNode right = null;
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+    }
+	public static class Pair{
+		TreeNode node;
+		int state;
+		Pair(TreeNode node,int state){
+			this.node = node;
+			this.state = state;
+		}
+	}
+
+	public static TreeNode getNextInorder(Stack<Pair> st){
+		while(st.size()>0){
+			Pair top = st.peek();
+			if(top.state == 1){
+				//pre
+				top.state++;
+				if(top.node.left != null) st.push(new Pair(top.node.left,1));
+			}else if(top.state == 2){
+				//in
+				top.state++;
+				if(top.node.right != null) st.push(new Pair(top.node.right,1));
+				return top.node;
+			}else{
+				//post
+				st.pop();
+			}
+		}
+		return null;
+	}
+    public static void recoverTree(TreeNode root) {
+        //Write code here
+		Stack<Pair> st = new Stack<>();
+		st.push(new Pair(root,1));
+		TreeNode a = null;
+		TreeNode b = null;
+
+		TreeNode prev = null;
+		TreeNode curr = getNextInorder(st);
+
+		while(curr != null){
+			if(prev != null && prev.val > curr.val){// problematic area
+				if(a == null){//first problematic area
+					a = prev;
+					b = curr;
+				}else{//second problematic area
+					b = curr;
+				}
+			}
+			prev = curr;
+			curr = getNextInorder(st);
+		}
+
+		int tval= a.val;
+		a.val= b.val;
+		b.val = tval;
+	
+    }
+
+    // input_section=================================================
+
+    public static void display(TreeNode node) {
+        if (node == null)
+            return;
+
+        StringBuilder sb = new StringBuilder();
+        sb.append((node.left != null ? node.left.val : "."));
+        sb.append(" -> " + node.val + " <- ");
+        sb.append((node.right != null ? node.right.val : "."));
+
+        System.out.println(sb.toString());
+
+        display(node.left);
+        display(node.right);
+
+    }
+
+    public static TreeNode createTree(int[] arr, int[] IDX) {
+        if (IDX[0] > arr.length || arr[IDX[0]] == -1) {
+            IDX[0]++;
+            return null;
+        }
+
+        TreeNode node = new TreeNode(arr[IDX[0]++]);
+        node.left = createTree(arr, IDX);
+        node.right = createTree(arr, IDX);
+
+        return node;
+    }
+
+    public static void solve() {
+        int n = scn.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = scn.nextInt();
+
+        int[] IDX = new int[1];
+        TreeNode root = createTree(arr, IDX);
+        recoverTree(root);
+        display(root);
+    }
+
+    public static void main(String[] args) {
+        solve();
+    }
+}
+
+//----------------Target sum Pair BST --------------//
+
+import java.util.*;
+
+class Node {
+    int data;
+    Node left, right;
+
+    public Node(int item) {
+        data = item;
+        left = right = null;
+    }
+}
+
+class BinarySearchTree {
+    Node constructBST(int[] arr, int start, int end, Node root) {
+        if (start > end)
+            return null;
+        int mid = (start + end) / 2;
+
+        if (root == null)
+            root = new Node(arr[mid]);
+
+        root.left = constructBST(arr, start, mid - 1, root.left);
+        root.right = constructBST(arr, mid + 1, end, root.right);
+
+        return root;
+
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Throwable {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        int target = sc.nextInt();
+
+        Arrays.sort(arr);
+        Node root = null;
+        BinarySearchTree bst = new BinarySearchTree();
+        root = bst.constructBST(arr, 0, n - 1, root);
+
+        Accio A = new Accio();
+        A.targetSum(root, target);
+
+        sc.close();
+    }
+}
+
+class Accio {
+
+	public class Pair{
+		Node node;
+		int state;
+		Pair(Node node,int state){
+			this.node = node;
+			this.state = state;
+		}
+	}
+
+	public Node getNextFromNormal(Stack<Pair> st){
+		while(st.size()>0){
+			Pair top = st.peek();
+			if(top.state == 1){
+				//pre
+				top.state++;
+				if(top.node.left != null) st.push(new Pair(top.node.left,1));
+			}else if(top.state == 2){
+				//in
+				top.state++;
+				if(top.node.right != null) st.push(new Pair(top.node.right,1));
+				return top.node;
+			}else{
+				//post
+				st.pop();
+			}
+		}
+		return null;
+	}
+	public Node getNextFromReverse(Stack<Pair> st){
+		while(st.size()>0){
+			Pair top = st.peek();
+			if(top.state == 1){
+				//pre
+				top.state++;
+				if(top.node.right != null) st.push(new Pair(top.node.right,1));
+			}else if(top.state == 2){
+				//in
+				top.state++;
+				if(top.node.left != null) st.push(new Pair(top.node.left,1));
+				return top.node;
+			}else{
+				//post
+				st.pop();
+			}
+		}
+		return null;
+	}
+	
+    public void targetSum(Node root, int tar){
+        // your code here
+		Stack<Pair> normal = new Stack<>();// stack for normal iteration
+		Stack<Pair> reverse = new Stack<>(); // stack for reverse iteration
+
+		normal.push(new Pair(root,1));
+		reverse.push(new Pair(root,1));
+
+		Node left = getNextFromNormal(normal);//next inorder node in normal traversal
+		Node right = getNextFromReverse(reverse);//next inorder node in reverse traversal
+		boolean printed = false;
+		
+		while(left.data < right.data){
+			if(left.data + right.data == tar){
+				printed = true;
+				System.out.println(left.data+" "+right.data);
+				left = getNextFromNormal(normal);
+				right = getNextFromReverse(reverse);
+			}else if(left.data + right.data<tar){
+				left = getNextFromNormal(normal);
+			}else{
+				right = getNextFromReverse(reverse);
+			}
+		}
+
+		if(!printed){
+			System.out.println(-1);
+		}
+    }
+
+}
+
+//---------------BST iterator ------------//
+
+import java.util.Scanner;
+import java.util.LinkedList;
+import java.util.*;
+
+public class Main {
+  public static Scanner scn = new Scanner(System.in);
+  public static class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+    TreeNode(int val) {
+      this.val = val;
+    }
+  }
+
+  public static class BSTIterator {
+	  Stack<Helper> st;
+	  public class Helper{
+		  TreeNode node;
+		  int state;
+		  Helper(TreeNode node,int state){
+			  this.node = node;
+			  this.state = state;
+		  }
+	  }
+    public BSTIterator(TreeNode root) {
+      //Your code here
+		st = new Stack<>();
+		st.push(new Helper(root,0));
+    }
+    public int next() {
+      //Your code here
+		while(st.size() > 0){
+			Helper top = st.peek();
+			if(top.state == 0){
+				// preorder
+				if(top.node.left != null) st.push(new Helper(top.node.left,0));
+				top.state++;
+			}else if(top.state == 1){
+				//inorder
+				st.pop();
+				if(top.node.right != null) st.push(new Helper(top.node.right,0));
+				top.state++;
+				return top.node.val;
+			}
+		}
+		return -1;
+    }
+    public boolean hasNext() {
+      //Your code here
+		return st.size()>0;
+    }
+  }
+
+  public static void display(TreeNode node) {
+    if (node == null)
+      return;
+    StringBuilder sb = new StringBuilder();
+    sb.append((node.left != null ? node.left.val : "."));
+    sb.append(" -> " + node.val + " <- ");
+    sb.append((node.right != null ? node.right.val : "."));
+    System.out.println(sb.toString());
+    display(node.left);
+    display(node.right);
+
+  }
+
+  public static TreeNode constructFromInOrder_(int[] in, int si, int ei) {
+    if (si > ei)
+      return null;
+    int mid = (si + ei) / 2;
+    TreeNode node = new TreeNode(in[mid]);
+    node.left = constructFromInOrder_(in, si, mid - 1);
+    node.right = constructFromInOrder_(in, mid + 1, ei);
+    return node;
+  }
+
+  public static void solve() {
+    int n = scn.nextInt();
+    int[] in = new int[n];
+    for (int i = 0; i < n; i++)
+      in[i] = scn.nextInt();
+    TreeNode root = constructFromInOrder_(in, 0, in.length - 1);
+    BSTIterator itr = new BSTIterator(root);
+    while (itr.hasNext()) {
+      System.out.println(itr.next());
+    }
+  }
+
+  public static void main(String[] args) {
+    solve();
+  }
+}
+
+//------------------constructBSTfromPostOrder------------------//
+
+import java.util.Scanner;
+
+public class Main {
+    public static Scanner scn = new Scanner(System.in);
+
+    public static class TreeNode {
+        int val = 0;
+        TreeNode left = null;
+        TreeNode right = null;
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+    }
+
+	public static int idx ;
+
+	public static TreeNode construct(int[] post,int min,int max){
+		if(idx <0 || post[idx]<min || post[idx] > max) return null;
+		TreeNode me = new TreeNode(post[idx]);
+		idx--;
+		me.right = construct(post,me.val,max);
+		me.left = construct(post,min,me.val);
+		return me;
+	}
+	
+    public static TreeNode CreateTree(int n,int[] postOrder) {
+        //write code here
+		idx =postOrder.length-1;
+		TreeNode root =  construct(postOrder,Integer.MIN_VALUE,Integer.MAX_VALUE);	
+		return root;
+    }
+
+    // input_section=================================================
+
+    public static void display(TreeNode node) {
+        if (node == null) return;
+        StringBuilder sb = new StringBuilder();
+        sb.append((node.left != null ? node.left.val : "."));
+        sb.append("->" + node.val + "<-");
+        sb.append((node.right != null ? node.right.val : "."));
+        System.out.println(sb.toString());
+        display(node.left);
+        display(node.right);
+
+    }
+
+    public static void solve() {
+        int n = scn.nextInt();
+        int[] post = new int[n];
+        for (int i = 0; i < n; i++)
+            post[i] = scn.nextInt();
+
+        TreeNode root = CreateTree(n,post);
+        display(root);
+    }
+
+    public static void main(String[] args) {
+        solve();
+    }
+}
+
+//-------------------- constructBSTfrompreorder ----------------//
+
+import java.util.Scanner;
+
+public class Main {
+    public static Scanner scn = new Scanner(System.in);
+
+    public static class TreeNode {
+        int val = 0;
+        TreeNode left = null;
+        TreeNode right = null;
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+    }
+
+	public static int idx;
+
+	public static TreeNode construct(int[] pre,int min,int max){
+		if(idx >= pre.length) return null;
+		if(pre[idx]<=min || pre[idx]>=max) return null;
+		TreeNode me = new TreeNode(pre[idx]);
+		idx++;
+		me.left = construct(pre,min,me.val);
+		me.right = construct(pre,me.val,max);
+		return me;
+	}
+	
+    public static TreeNode CreateTree(int n,int[] preOrder) {
+        // Write Your Code here
+		idx =0;
+		TreeNode root = construct(preOrder,Integer.MIN_VALUE,Integer.MAX_VALUE);
+		return root;
+    }
+
+    // input_section=================================================
+
+    public static void display(TreeNode node) {
+        if (node == null) return;
+        StringBuilder sb = new StringBuilder();
+        sb.append((node.left != null ? node.left.val : "."));
+        sb.append("->" + node.val + "<-");
+        sb.append((node.right != null ? node.right.val : "."));
+        System.out.println(sb.toString());
+        display(node.left);
+        display(node.right);
+
+    }
+
+    public static void solve() {
+        int n = scn.nextInt();
+        int[] pre = new int[n];
+        for (int i = 0; i < n; i++)
+            pre[i] = scn.nextInt();
+
+        TreeNode root = CreateTree(n,pre);
+        display(root);
+    }
+
+    public static void main(String[] args) {
+        solve();
+    }
+}
+
+//-------------------------- constructBstFromLevelOrder -------------------//
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.io.*;
+import java.util.*;
+import java.lang.*;
+
+class Node {
+    int data;
+    Node left;
+    Node right;
+
+    Node(int data) {
+        this.data = data;
+        left = null;
+        right = null;
+    }
+}
+
+public class Main {
+
+    static void printLevelOrder(Node root) {
+        Queue<Node> queue = new LinkedList<Node>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+
+            Node tempNode = queue.poll();
+            System.out.print(tempNode.data + " ");
+
+            if (tempNode.left != null) {
+                queue.add(tempNode.left);
+            }
+
+            if (tempNode.right != null) {
+                queue.add(tempNode.right);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; ++i)
+            arr[i] = sc.nextInt();
+        Solution Obj = new Solution();
+        Node ans = Obj.bstFromLevel(arr, n);
+        printLevelOrder(ans);
+        sc.close();
+    }
+}
+
+class Solution {
+	class Helper{
+		int min;
+		int max;
+		Node parent;
+		Helper(Node parent,int min,int max){
+			this.parent=parent;
+			this.min = min;
+			this.max  = max;
+		}
+	}
+	
+    Node bstFromLevel(int arr[], int n) {
+        // write code here
+		Node root = new Node(arr[0]);
+		int idx = 1;
+		Queue<Helper> q = new LinkedList<>();
+		q.add(new Helper(root,Integer.MIN_VALUE,root.data));
+		q.add(new Helper(root,root.data,Integer.MAX_VALUE));
+		while(q.size() > 0){
+			Helper curr =  q.remove();
+			if(idx == arr.length ||  arr[idx] < curr.min || arr[idx] > curr.max) continue;
+			Node nn = new Node(arr[idx++]);
+			if(nn.data < curr.parent.data){
+				curr.parent.left = nn;
+				q.add(new Helper(nn,curr.min,nn.data));
+				q.add(new Helper(nn,nn.data,curr.max));
+			}else{
+				curr.parent.right = nn;
+				q.add(new Helper(nn,curr.min,nn.data));
+				q.add(new Helper(nn,nn.data,curr.max));
+			}
+		}
+		return root;
+    }
+
+	
+}
+
+
+
+//------------------- CarPooling --------------//
+
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class Main {
+	   public static void main(String args[]) {
+		  
+		        Scanner sc = new Scanner(System.in);
+		        int n = sc.nextInt();
+		        int[][] trips = new int[n][3];
+		        for (int i = 0; i < n; i++) {
+		            for (int j = 0; j < 3; j++) {
+		                trips[i][j] = sc.nextInt();
+		            }
+		        }
+		        int k = sc.nextInt();
+	           
+	        Solution obj= new Solution();
+	        System.out.println(obj.carPooling(trips,k));
+	    }
+}
+class Solution{
+  
+    public boolean carPooling(int[][] trips, int capacity) {
+	//your code
+		int[] stops = new int[1005];
+
+		for(int t = 0;t<trips.length;t++){
+			int numOfPass = trips[t][0];
+			int sp = trips[t][1];
+			int ep = trips[t][2];
+
+			stops[sp] += numOfPass;
+			stops[ep+1] -= numOfPass;
+			
+		}
+		
+		// build prefix sum array out of stops (prefix step array)
+		for(int i= 1;i<1005;i++){
+			stops[i] += stops[i-1];
+		}
+
+		for(int i = 1;i<1005;i++) if(stops[i] > capacity) return false;
+		return true;	
+	}
+}
+
+
+
+//-----------------  MaximumSum ------------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+    
+    public static int maximumSum(int[] A, int[][] ops) {
+	    int[] freq = new int[A.length];
+		
+		//iterate on all the operations
+		for(int i = 0;i<ops.length;i++){
+			int sp = ops[i][0];
+			int ep = ops[i][1];
+			 freq[sp]++;
+			if(ep+1<A.length) freq[ep+1]--;
+		}
+		//prefix sum build of freq array
+		for(int i = 1;i<A.length;i++) freq[i] += freq[i-1];
+		Arrays.sort(freq);
+		Arrays.sort(A);
+		int score = 0;
+		int md = (int) 1e9 + 7;
+		for(int i = 0;i<A.length;i++){
+			score = ((score%md) + ((freq[i]%md)*(A[i]%md))%md)%md;
+		}
+		return score;
+    }
+	public static void main (String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));	
+        long n = Long.parseLong(br.readLine().trim());
+        String inputLine[] = br.readLine().trim().split(" ");
+        int[] arr = new int[(int)n];
+        for(int i=0; i<n; i++)arr[i]=Integer.parseInt(inputLine[i]);
+        long m = Long.parseLong(br.readLine().trim());
+        int[][] ops = new int[(int)m][2];
+        for(int i=0; i<m; i++){
+          String inputLine1[] = br.readLine().trim().split(" ");
+          ops[i][0]=Integer.parseInt(inputLine1[0]);
+          ops[i][1]=Integer.parseInt(inputLine1[1]);
+        }
+        System.out.println(maximumSum(arr, ops));
+	}
+}
+
+
+//-----------------  XorQueries ---------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+public class Main {
+	  public static void main(String[] args) throws Throwable {
+		  Scanner sc = new Scanner(System.in);
+	        int n = sc.nextInt();
+	        int q = sc.nextInt();
+	        int [] arr= new int[n];
+	        for(int i=0;i<n;i++){
+	            arr[i]=sc.nextInt();
+	        }
+	        int [][] queries= new int[q][2];
+	        for(int i=0;i<q;i++){
+	            for(int j=0;j<2;j++){
+	                queries[i][j]=sc.nextInt();
+	            }
+	        }
+	        Solution Obj= new Solution();
+	        
+	        int [] result = Obj.xorQueries(arr,queries);
+	        for(int i=0;i<result.length;i++){
+	            System.out.print(result[i]+" ");
+	    }
+}
+public static class Solution{
+	  public static void build(int[] pref,int[] arr){
+			for(int i = 0;i<arr.length;i++){
+				pref[i] = arr[i] ^ (i-1>=0?pref[i-1]:0);
+			}
+		}
+		public static int getXorInRange(int[] pref,int sp,int ep){
+			if(sp == 0) return pref[ep];
+			return pref[ep]^pref[sp-1];
+		}
+	 public static int[] xorQueries(int[] A, int[][] q) {
+	       // your code goes here
+			 int[] pref = new int[A.length];
+			 build(pref,A);
+			 int[] ans =new int[q.length];
+			 for(int i = 0;i<q.length;i++){
+				 int sp =q[i][0];
+				 int ep = q[i][1];
+				 ans[i] = getXorInRange(pref,sp,ep);
+			 }
+			 return ans;
+	    }   
+}
+
+
+
+}
+
+
+
+//----------------- rangeSum ----------------//
+
+import java.util.*;
+
+class Solution {
+
+
+		public void build(int[] pref,int[] arr){
+			pref[0] = arr[0];
+			for(int i = 1;i<arr.length;i++){
+				pref[i] = arr[i] + pref[i-1];
+			}
+		}
+		public int rangeSum(int[] pref,int sp,int ep){
+			if(sp == 0) return pref[ep];
+			return pref[ep]-pref[sp-1];
+		}
+        public int[] sumQuery(int[] arr, int[][] queries) {
+            // Your code here.
+			int n = arr.length;
+			int q = queries.length;
+			int[] ans = new int[q];
+
+			int[] pref = new int[n];
+			build(pref,arr);
+
+			for(int i=0;i<q;i++){
+				int sp = queries[i][0];
+				int ep = queries[i][1];
+				ans[i] = rangeSum(pref,sp,ep);
+			}
+			return ans;
+        }
+}
+
+public class Main {
+     public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n;
+        n = sc.nextInt();
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+        int m;
+        m = sc.nextInt();
+        int[][] ranges = new int[m][2];
+        for(int i = 0; i < m; i++) {
+            ranges[i][0] = sc.nextInt();
+            ranges[i][1] = sc.nextInt();
+        }
+        Solution Obj = new Solution();
+        int[] ans = Obj.sumQuery(arr, ranges);
+        for(int i =0; i< ans.length; i++)
+            System.out.print(ans[i] + " ");
+    }
+}
+
+//------------------rangeSum2d --------------//
+
+import java.util.*;
+
+class Pair {
+    int row1;
+    int row2;
+    int col1;
+    int col2;
+}
+
+class Solution {
+
+	public void build(int[][] pref,int[][] a){
+		int n = a.length;
+		int m = a[0].length;
+		for(int i = 0;i<n;i++){
+			for(int j = 0;j<m;j++){
+				int A = a[i][j];
+				int B = j-1>=0?pref[i][j-1]:0;
+				int C = i-1>=0?pref[i-1][j]:0;
+				int D = i-1>=0 && j-1>=0?pref[i-1][j-1]:0;
+				pref[i][j] = A + B + C - D;
+			}
+		}
+	}
+	public int getQuery(int[][] pref,int r1,int c1,int r2,int c2){
+		// System.out.println(r2+" "+c2)
+		int A = pref[r2][c2];
+		int B = c1-1>=0?pref[r2][c1-1]:0;
+		int C = r1-1>=0?pref[r1-1][c2]:0;
+		int D = r1-1>=0 && c1-1>=0?pref[r1-1][c1-1]:0;
+		return A - B - C + D;
+	}
+    public List<Integer> solve(int arr[][], Pair q[]) {
+        // Your code here
+        int[][] pref  = new int[arr.length][arr[0].length];
+		build(pref,arr);
+		List<Integer> ans = new ArrayList<>();
+		for(int i = 0;i<q.length;i++){
+			int r1 = q[i].row1;
+			int c1 = q[i].col1;
+			int r2 = q[i].row2;
+			int c2 = q[i].col2;
+			ans.add(getQuery(pref,r1,c1,r2,c2));
+		}
+		return ans;
+    }
+}
+
+class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        int matrix[][] = new int[n][m];
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            matrix[i][j]=sc.nextInt();
+        }
+        int q = sc.nextInt();
+        Pair query[] = new Pair[q];
+
+        Solution obj = new Solution();
+        for (int i = 0; i < q; i++) {
+            Pair p=new Pair();
+            p.row1 = sc.nextInt();
+            p.col1 = sc.nextInt();
+            p.row2 = sc.nextInt();
+            p.col2 = sc.nextInt();
+            query[i]=p;
+        }
+        List<Integer> ans = obj.solve(matrix, query);
+        for(int x: ans)
+        System.out.println(x);
+        sc.close();
+    }
+}
+
+//------------------- GridGame ----------------//
+
+class Solution {
+    public long rangeSum(long[] pref,int l,int r){
+        if(r<0) return 0;
+        if(l == 0) return pref[r];
+        return pref[r] - pref[l-1];
+    }
+
+    public int kadanes(int[] arr){
+        int maxSum = Integer.MIN_VALUE;
+        int currTrain = Integer.MIN_VALUE;
+
+        for(int i = 0;i<arr.length;i++){
+            int ifIStartNewTrain = arr[i];
+            int ifISitWithCurrTrain = currTrain + arr[i];
+
+            currTrain = Math.max(ifIStartNewTrain, ifISitWithCurrTrain);
+            maxSum = Math.max(maxSum, currTrain);
+        }
+        return maxSum;
+    }
+    
+    public long gridGame(int[][] a) {
+        int n = a[0].length;
+        long[] row0 = new long[n];
+        long[] row1 = new long[n];
+        long ans = Long.MAX_VALUE;
+        //building prefix sum arrays on both rows
+        row0[0] = a[0][0];
+        for(int i = 1;i<n;i++) row0[i] = a[0][i] + row0[i-1];
+
+        row1[0] = a[1][0];
+        for(int i = 1;i<n;i++) row1[i] = a[1][i] + row1[i-1];
+
+        //robot 1 tries to switch rows at every i
+        for(int i = 0;i<n;i++){
+            long option1 = rangeSum(row0,i+1,n-1);
+            long option2 = rangeSum(row1,0,i-1);
+            long robot2Choice = Math.max(option1,option2);
+            ans = Math.min(ans,robot2Choice);
+        }
+        return ans;
+    }
+}
+
+//------------------ MaxSumNolargerThanK -----------------//
+
+import java.util.*;
+
+class Solution {
+
+	public int getSumK(int[] rows,int k){
+		int myAns = Integer.MIN_VALUE;
+		for(int i = 0;i<rows.length;i++){
+			int cWinSum = 0;
+			for(int j = i;j<rows.length;j++){
+				cWinSum += rows[j];
+				if(cWinSum <= k) myAns = Math.max(myAns,cWinSum);
+			}
+		}
+		return myAns;
+	}
+	
+    public int maxSumSubmatrix(int[][] arr, int k) {
+        //Write code here
+		int ans = Integer.MIN_VALUE;
+		for(int left = 0;left<arr[0].length;left++){
+			int[] rows = new int[arr.length];
+			for(int right = left;right<arr[0].length;right++){
+				for(int i = 0;i<arr.length;i++) rows[i] += arr[i][right];
+				ans = Math.max(ans,getSumK(rows,k));
+			}
+		}
+		return ans;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int m, n;
+        m = sc.nextInt();
+        n = sc.nextInt();
+        int[][] matrix = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++)
+                matrix[i][j] = sc.nextInt();
+        }
+        int k;
+        k = sc.nextInt();
+        Solution Obj = new Solution();
+        System.out.println(Obj.maxSumSubmatrix(matrix, k));
+        sc.close();
+    }
+}
+
+// --------------- circularSumSubarray ----------------//
+
+import java.util.*;
+
+class Solution {
+    public int MaxSum(int[] arr, int n) {
+        // Write your code here
+		int maxSumSubarray = -100000;
+		int currMax = maxSumSubarray;
+		
+		int minSumSubarray = 100000;
+		int currMin = minSumSubarray;
+
+		int wholeArraySum = 0;
+
+		for(int i = 0;i<n;i++){
+			wholeArraySum += arr[i];
+			
+			//for max sum subarray
+			int maxIStartNew = arr[i];
+			int maxIJoinPrev = arr[i] + currMax;
+			currMax = Math.max(maxIStartNew,maxIJoinPrev);
+			maxSumSubarray = Math.max(maxSumSubarray,currMax);
+
+			//for min sum subarray
+			int minIStartNew = arr[i];
+			int minIJoinPrev = arr[i] + currMin;
+			currMin = Math.min(minIStartNew,minIJoinPrev);
+			minSumSubarray = Math.min(minSumSubarray,currMin);
+		}
+		// if all numbers are -ve
+		if(wholeArraySum == minSumSubarray) return maxSumSubarray;
+		// int allPositive = maxSumSubarray;
+		// int noWrap = maxSumSubarray;
+		// int wrapAround = wholeArraySum - minSumSubarray;
+		return Math.max( maxSumSubarray , wholeArraySum - minSumSubarray);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+	    Solution Obj = new Solution();
+        int ans = Obj.MaxSum(arr, n);
+        System.out.println(ans);
+    }
+}
+
+//-------------- maxContSubarraySum --------------//
+
+import java.util.*;
+
+class Main {
+    public static void main(String args[]) {
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+        int a[] = new int[n];
+        for(int i=0;i<n;i++){
+            a[i] = input.nextInt();
+        }
+        Solution ob =new Solution();
+        long ans = ob.maxSubarraySum(a,n);
+        System.out.println(ans);
+    }
+}
+class Solution{
+    public long maxSubarraySum(int arr[],int n){
+        //Write code here
+		long maxSum = Integer.MIN_VALUE;
+        long currTrain = Integer.MIN_VALUE;
+
+        for(int i = 0;i<arr.length;i++){
+            long ifIStartNewTrain = arr[i];
+            long ifISitWithCurrTrain = currTrain + arr[i];
+
+            currTrain = Math.max(ifIStartNewTrain, ifISitWithCurrTrain);
+            maxSum = Math.max(maxSum, currTrain);
+        }
+        return maxSum;
+    }
+}
+
+//------------------AlexKthLargest ---------------//
+
+import java.util.*;
+class Node {
+    int data;
+    Node left, right;
+    public Node(int item)
+    {
+        data = item;
+        left = right = null;
+    }
+}
+
+class BinarySearchTree
+{
+    Node constructBST(int[]arr,int start,int end,Node root)
+    {
+        if(start>end)
+            return null;
+        int mid=(start+end)/2;
+
+        if(root==null)
+            root=new Node(arr[mid]);
+
+        root.left=constructBST(arr,start,mid-1, root.left);
+        root.right=constructBST(arr,mid+1,end, root.right);
+
+        return root;
+
+    }
+}
+
+public class Main {
+    public static void main(String[] args) throws Throwable {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        int arr[]=new int[n];
+        for (int i = 0; i < n; i++) 
+        {
+            arr[i] = sc.nextInt(); 
+        }
+        int k=sc.nextInt();
+        Arrays.sort(arr);
+        Node root=null;
+        BinarySearchTree bst=new BinarySearchTree();
+        root=bst.constructBST(arr,0,n-1,root);
+            
+        Solution Accio = new Solution();
+        int ans=Accio.solve(root,k);
+        System.out.println(ans);
+        sc.close();
+        
+    }
+}
+class Solution
+{
+
+	class Pair{
+		Node node;
+		int state;
+		Pair(Node  node,int state){
+			this.node = node;
+			this.state = state;
+		}
+	}
+	
+	Node getNextReverse(Stack<Pair> st){
+		while(st.size()>0){
+			Pair top = st.peek();
+			if(top.state == 1){
+				//pre
+				if(top.node.right != null) st.push(new Pair(top.node.right,1));
+				top.state++;
+			}else if(top.state == 2){
+				//in
+				if(top.node.left != null) st.push(new Pair(top.node.left,1));
+				top.state++;
+				return top.node;
+			}else{
+				st.pop();
+			}
+		}
+		return null; //dummy return
+	}
+	
+    int solve(Node node, int k){
+        // your cod here
+		Stack<Pair> st = new Stack<>();
+		st.push(new Pair(node,1));
+
+		Node curr = getNextReverse(st);
+
+		while(curr != null && k>1){
+			curr = getNextReverse(st);
+			k--;
+		}
+		return curr.data;
+		
+    }
+}
+
+
+
+//----------------- groceryStore2 ------------------//
+
+import java.util.*;
+import java.io.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int m = sc.nextInt();
+        int n = sc.nextInt();
+        int[][] arr = new int[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+        Solution s = new Solution();
+        int[] ans = s.bestProducts(arr);
+        for (int i = 0; i < m; i++) {
+            System.out.println(ans[i]);
+        }
+    }
+}
+
+class Solution {
+    public static int[] bestProducts(int[][] arr) {
+       // Write your code
+		int n = arr.length;
+		int m = arr[0].length;
+		int[] ans  = new int[n];
+
+		for(int i = 0;i<n;i++){
+			int maxi = -1;
+			int maxIdx = -1;
+			for(int j = 0;j<m;j++){
+				int salesTillPrevDay = i==0?0:arr[i-1][j];
+				arr[i][j] = arr[i][j] + salesTillPrevDay;
+				if(arr[i][j] > maxi){
+					maxi = arr[i][j];
+					maxIdx = j;
+				}
+			}
+			ans[i] = maxIdx;
+		}
+		return ans;
+    }
+}
+
+
+
+
+//----------------  matrixChallenge -----------//
+
+import java.io.*;
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc = new Scanner(System.in);
+        
+        int m,n,target;
+        m=sc.nextInt();
+        n=sc.nextInt();
+        target=sc.nextInt();
+
+        int matrix[][]=new int[m][n];
+
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            matrix[i][j]=sc.nextInt();
+        }
+
+        Solution obj=new Solution();
+        System.out.println(obj.solve(matrix,target));
+        sc.close();
+    }
+}
+
+class Solution{
+
+	public void build(int[][] arr,int[][] pref){
+		for(int i = 0;i<arr.length;i++){
+			for(int j = 0;j<arr[0].length;j++){
+				int A = arr[i][j];
+				int B = j==0?0:pref[i][j-1];
+				int C = i==0?0:pref[i-1][j];
+				int D = i==0 || j==0?0:pref[i-1][j-1];
+
+				pref[i][j] = A + B + C - D;
+			}
+		}
+	}
+
+	public int query(int[][] pref,int r1,int c1,int r2,int c2){
+		int A = pref[r2][c2];
+		int B = c1==0?0:pref[r2][c1-1];
+		int C = r1==0?0:pref[r1-1][c2];
+		int D = r1==0 || c1==0?0:pref[r1-1][c1-1];
+		return A - B - C + D;
+	}
+	
+    public int solve(int arr[][],int target){
+        // your code here
+		int n = arr.length;
+		int m = arr[0].length;
+		int[][] pref = new int[n][m];
+		build(arr,pref);
+		int cnt = 0;
+		for(int r1 = 0;r1<n;r1++){
+			for(int c1 = 0;c1<m;c1++){
+				for(int r2 = r1;r2<n;r2++){
+					for(int c2 = c1;c2<m;c2++){
+						if(query(pref,r1,c1,r2,c2) == target) cnt++;
+					}
+				}
+			}
+		}
+		return cnt;
+		
+
+    }
+
+}
+
+
+
+//-------------------  maxWidthJump -----------------//
+
+import java.util.*;
+
+class Solution {
+
+    public int solve(int nums[],int n) {
+        // Your code here
+		int[] rMax  = new int[n];
+		rMax[n-1] = nums[n-1];
+		for(int i = n-2;i>=0;i--){
+			rMax[i] = Math.max(nums[i],rMax[i+1]);
+		}
+
+		int i = 0;
+		int j = 1;
+		int ans = 0;
+
+		while(j<n){
+			if(nums[i] <= rMax[j]){
+				ans = Math.max(ans,j-i);
+				j++;
+			}else i++;
+		}
+		return ans;
+    }
+}
+
+class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int nums[]=new int[n];
+        for(int i=0;i<n;i++)
+        nums[i]=sc.nextInt();
+
+        Solution obj=new Solution();
+        System.out.println(obj.solve(nums,n));
+        sc.close();
+    }
+}
+
+//------------------- pairWithKDiff ------------//
+
+import java.io.*;
+import java.util.*;
+class Main{
+	public static void main (String[] args) {
+		Scanner sc=new Scanner(System.in);
+        int n,k;
+        n=sc.nextInt();
+        k=sc.nextInt();
+        int[] a= new int[n];
+        for(int i=0;i<n;i++){
+          a[i] = sc.nextInt();
+        }
+        Solution obj=new Solution();
+        System.out.println(obj.findPairs(a,n,k));		    
+    }
+}
+
+class Solution
+{
+    public int findPairs(int[] nums,int n, int k) {
+        //Write code here
+		Arrays.sort(nums);
+		int l = 0;
+		int r = 1;
+		int cnt =0;
+		while(r<n){
+			int diff = nums[r] - nums[l];
+
+			if(diff == k){
+				cnt++;
+				l++;
+				while(l<r && nums[l]==nums[l-1]) l++;
+				r++;
+				while(r<n && nums[r]==nums[r-1])r++;
+			}else if(diff < k){
+				r++;
+				while(r<n && nums[r]==nums[r-1])r++;
+			}else{
+				l++;
+				while(l<r && nums[l]==nums[l-1]) l++;
+			}
+			if(l == r) r++;
+		}
+		return cnt;
+    }
+}
+
+
+//----------------- 4sum ---------------//
+
+import java.util.*;
+import java.io.*;
+class Solution {
+   public List<List<Integer>> fourSum(int[] nums, int target) {
+       // Write your code here
+	   Arrays.sort(nums);
+	   int n = nums.length;
+	   List<List<Integer>> ans = new ArrayList<>();
+	   for(int  i = 0;i<n;i++){
+		   for(int j = i+1;j<n;j++){
+
+			   //two sum
+			   int newTar = target - (nums[i] + nums[j]);
+			   int l = j+1;
+			   int r = n-1;
+			   while(l<r){
+				   int sum = nums[l] + nums[r];
+				   if(sum == newTar){
+					   //add to ans arraylist
+					   List<Integer> curr = new ArrayList<>();
+					   curr.add(nums[i]);
+					   curr.add(nums[j]);
+					   curr.add(nums[l]);
+					   curr.add(nums[r]);
+					   ans.add(curr);
+					   l++;
+                       while(l<r && nums[l]==nums[l-1]) l++;
+					   r--;
+                       while(r>l && nums[r]==nums[r+1]) r--;
+				   }else if(sum<newTar){
+					   l++;
+                       while(l<r && nums[l]==nums[l-1]) l++;
+				   }else{
+					   r--;
+                       while(r>l && nums[r]==nums[r+1]) r--;
+				   }
+			   }
+               //take j to the last index of the same value
+			   while(j+1<n && nums[j] == nums[j+1]) j++;
+		   }
+           //take i to the last index of the same value
+           while(i+1<n && nums[i] == nums[i+1]) i++;
+	   }
+	   return ans;
+   }
+}
+
+public class Main
+{
+	    
+    public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+        int n;
+        n = sc.nextInt();
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++)
+            nums[i] = sc.nextInt();
+        int k = sc.nextInt();
+        Solution Obj = new Solution();
+        List<List<Integer>> res = Obj.fourSum(nums, k);
+
+      
+        for(int i= 0; i<res.size(); i++){
+           Collections.sort(res.get(i));
+        }
+
+     
+        Collections.sort(res, new Comparator<List<Integer>>() {
+               public int compare(List<Integer> frst, List<Integer> scnd) {
+                    int i=0;
+                    while(frst.get(i)==scnd.get(i)) i++;
+                    return frst.get(i)-scnd.get(i);
+                    }
+                });
+
+        for(int i=0; i<res.size(); i++){   
+            for(int j=0; j<4; j++){
+                System.out.print(res.get(i).get(j) + " ");
+            } 
+            System.out.println("");
+        }
+        sc.close();
+	}
+}
+
+//----------------- maxConsecutiveOnes ------------------//
+
+import java.util.*;
+
+class Solution {
+    static int maxOne(int arr[], int n,int k){
+        //Write your code here
+		int numOfZeroesInCurrWindow = 0;
+		int sp = 0;
+		int ep = 0;
+		int ans = 0;
+
+		while(ep<n){
+			//end point is visited now
+			if(arr[ep] == 0) numOfZeroesInCurrWindow++;
+
+			// -------------------
+			// shrink until window is valid
+			while(numOfZeroesInCurrWindow > k){
+				if(arr[sp] == 0) numOfZeroesInCurrWindow--;
+				sp++;
+			}
+			//on this line of code, our window will always be valid
+			ans = Math.max(ans,ep-sp+1);
+			ep++;
+		}
+		return ans;
+    }
+
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n= sc.nextInt();
+        int k= sc.nextInt();
+        int array[] = new int[n];
+
+        for(int i=0; i<n; i++){
+            array[i]= sc.nextInt();
+        }
+        Solution Obj = new Solution();
+        System.out.println(Obj.maxOne(array,n,k));
+    }
+}
+
+//------------------ subarrayProdLessthanK ----------------//
+
+import java.util.*;
+
+class Solution {
+    public int numSubarrayProductLessThanK(int[] nums, int k) {
+        //Write code here
+		int winProd = 1;
+		int sp =0;
+		int ep =0;
+		int ans = 0;
+		int n = nums.length;
+		while(ep<n){
+			winProd*=nums[ep];
+
+			while(winProd >= k){
+				winProd/=nums[sp];
+				sp++;
+			}
+
+			ans += (ep-sp+1);
+			ep++;
+		}
+		return ans;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n;
+        n = sc.nextInt();
+        int arr[] = new int[n];
+        for (int i = 0; i < n; i++)
+            arr[i] = sc.nextInt();
+        int k;
+        k = sc.nextInt();
+        Solution Obj = new Solution();
+        int result = Obj.numSubarrayProductLessThanK(arr, k);
+        System.out.println(result);
+        sc.close();
+    }
+}
+
+//----------------- twoSum. -----------------//
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Main {
+
+    public static int[] twoSum(int[] arr, int target) {
+		int n = arr.length;
+        int l = 0;
+		int r = n-1;
+		int[] ans = new int[2];
+		while(l<r){
+			int sum = arr[l] + arr[r];
+			if(sum == target){
+				//just to convert to one-indexed doing l+1 and r+1
+				ans[0] = l+1;
+				ans[1] = r+1;
+					return ans;
+			}else if(sum < target) l++;
+			else r--;
+		}
+		return ans; //dummy
+    }
+
+    public static void main (String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        long n = Long.parseLong(br.readLine().trim());
+        String inputLine[] = br.readLine().trim().split(" ");
+        int[] arr = new int[(int)n];
+        for(int i=0; i<n; i++)arr[i]=Integer.parseInt(inputLine[i]);
+        int m = Integer.parseInt(br.readLine().trim());
+        int[] ans = (twoSum(arr, m));
+        System.out.println(ans[0] + " " + ans[1]);
+    }
+}
+
+
+//------------- 
